@@ -1,0 +1,6 @@
+{
+  //Force vscode to use the venv
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+  //Load the environment variables
+  "python.envFile": "${workspaceFolder}/.env"
+}
