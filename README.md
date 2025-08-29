@@ -7,6 +7,7 @@ This project benchmarks nonlinear programming (NLP) algorithms using [PyCUTEst](
 - Packages listed in `requirements.txt`
 
 ## Setup
+```bash
 # Create a virtual environment
 python3 -m venv .venv
 source .venv/bin/activate
