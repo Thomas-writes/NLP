@@ -1,6 +1,6 @@
-# NLPs Benchmark Project
+# NLP Research
 
-This project benchmarks nonlinear programming (NLP) algorithms using [PyCUTEst](https://jfowkes.github.io/pycutest/).
+I am researching Nonlinear Programming (NLP) algorithms using [PyCUTEst](https://jfowkes.github.io/pycutest/).
 
 ## Requirements
 - Python 3.12+ (Other versions may work but tested on 3.12)
