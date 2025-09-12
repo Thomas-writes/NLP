@@ -5,6 +5,7 @@ I am researching Nonlinear Programming (NLP) algorithms using [PyCUTEst](https:/
 ## Requirements
 - Python 3.12+ (Other versions may work but tested on 3.12)
 - Packages listed in `requirements.txt`
+- Easier to understand packages (PyCUTEst, scipy, numpy, matplotlib)
 
 ## Setup
 ```bash
