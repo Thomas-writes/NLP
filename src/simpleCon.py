@@ -79,6 +79,7 @@ def graph(Llist, Tlist, Plist, Nlist):
         return [avg_convex, avg_nonconvex, avg_fail, num_convex, num_nonconvex, num_fail]
 
     #returns the list directly above
+    #probably need to switch to median
     avgL = avg_for(Llist)
     avgT = avg_for(Tlist)
     avgP = avg_for(Plist)
@@ -102,7 +103,8 @@ def graph(Llist, Tlist, Plist, Nlist):
     bars3 = plt.bar(x + width, fail_avgs, width=width, label="Fails")
 
     plt.xticks(x, methods)
-    plt.ylabel("Average Time (s)")
+    plt.yscale("log")
+    plt.ylabel("Average Time (s, logrithmic)")
     plt.title("Average times by method")
     plt.legend()
 
@@ -111,8 +113,7 @@ def graph(Llist, Tlist, Plist, Nlist):
     annotate_bars(bars2, total_nonconvex)
     annotate_bars(bars3, total_fail)
 
-    plt.tight_layout()
-    plt.savefig("./outputimages/simple_constraints.png", dpi=300, bbox_inches="tight")
+    plt.savefig("./outputimages/simpleconstrained.png")
     plt.show()
 
     
@@ -127,7 +128,7 @@ def main():
     
     #full length crashes my mac 
     #temporarily making it 10 elements
-    simple_constraints = simple_constraints[:3]
+    simple_constraints = simple_constraints[:20]
     
     #methods L-BFG-B, TNC, Powell, Nelder-Mead
     Llist = []

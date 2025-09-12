@@ -102,7 +102,8 @@ def graph(Clist, Blist, Dlist, Tlist):
     bars3 = plt.bar(x + width, fail_avgs, width=width, label="Fails")
 
     plt.xticks(x, methods)
-    plt.ylabel("Average Time (s)")
+    plt.yscale("log")
+    plt.ylabel("Average Time (s, logrithmic)")
     plt.title("Average times by method")
     plt.legend()
 
@@ -112,7 +113,7 @@ def graph(Clist, Blist, Dlist, Tlist):
     annotate_bars(bars3, total_fail)
 
     plt.tight_layout()
-    plt.savefig("./outputimages/simple_constraints.png", dpi=300, bbox_inches="tight")
+    plt.savefig("./outputimages/unconstrained.png", dpi=300, bbox_inches="tight")
     plt.show()
 
 def main():
@@ -121,7 +122,7 @@ def main():
     unconstrained = pycutest.find_problems(constraints='unconstrained')
     print("Unconstrained problems: " + str(len(unconstrained)))
     
-    unconstrained = unconstrained[:3]
+    unconstrained = unconstrained[:20]
     
     Clist = []
     Blist = []

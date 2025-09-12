@@ -8,7 +8,7 @@ def main():
     
     complex_constraints = pycutest.find_problems(constraints=['linear', 'quadratic', 'adjacency', 'other'])
     print("Complex Constraints problems: " + str(len(complex_constraints)))
-    '''
+    
     counterTr = 0
     timeTr = 0
     
@@ -17,5 +17,5 @@ def main():
         temp = a.complex_bounds("trust-constr")
         counterTr += temp[0]
         timeTr += temp[1]
-    '''
+    
 main()
