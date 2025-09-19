@@ -3,7 +3,10 @@ import time
 import shutil
 import pycutest
 import numpy as np
+import numdifftools as nd
 from scipy.optimize import minimize, NonlinearConstraint, Bounds
+from scipy.linalg import eigvals
+
 
 class solver:
     def __init__(self, name):
@@ -30,23 +33,19 @@ class solver:
         
         #this is called every callback by the solver so every set amount of iterations to check time
         def timeout(xk):
-            if time.perf_counter() - start > 20:
+            if time.perf_counter() - start > 60*20:
                 raise TimeoutError
         
         try:
             #start the timer again so it is more accurate
             start = time.perf_counter()
-            #this is the set amount of iterations for all methods
-            #ask about this
-            default_opts = dict(maxiter=40_000)
             if method == "Powell" or method == "Nelder-Mead":
-                res = minimize(self.fun, self.x0, method=method, bounds=self.pbounds, callback=timeout, options=default_opts)
+                res = minimize(self.fun, self.x0, method=method, bounds=self.pbounds, callback=timeout)
             elif method == "TNC":
-                #TNC takes Conjugate-Gradient iterations instead of just iterations
-                default_opts = dict(maxCGit=40_000)
-                res = minimize(self.fun, self.x0, jac=self.jac, method=method, bounds=self.pbounds, callback=timeout, options=default_opts)
+                #TNC takes Conjugate-Gradient 
+                res = minimize(self.fun, self.x0, jac=self.jac, method=method, bounds=self.pbounds, callback=timeout)
             else:
-                res = minimize(self.fun, self.x0, jac=self.jac, method=method, bounds=self.pbounds, callback=timeout, options=default_opts)
+                res = minimize(self.fun, self.x0, jac=self.jac, method=method, bounds=self.pbounds, callback=timeout)
 
             #timer doesnt start at 0 so subtract it out
             total = time.perf_counter() - start
@@ -54,6 +53,7 @@ class solver:
             print("Problem: " + str(self.name))
             print(f"Time: {total:.2f}")
             print(f"Success: {res.success}")
+            print(f"Message: {res.message}")
             
             #get the hessian of the objective function at the resulting point
             H = self.p.hess(res.x) 
@@ -108,7 +108,7 @@ class solver:
                 return [0, total, convex_flag]
         
         except TimeoutError:
-            #catch all the methods that go over the 20s limit
+            #catch all the methods that go over the 20m limit
             total = time.perf_counter() - start
             print("Method: " + method)
             print("Problem: " + str(self.name))
@@ -128,13 +128,11 @@ class solver:
         
         
         
-        
-        
     
     def complex_bounds(self, method):
         start = time.perf_counter()
         
-        def timeout(xk):
+        def timeout(xk, state=None):
             if time.perf_counter() - start > 20:
                 raise TimeoutError
             
@@ -145,23 +143,35 @@ class solver:
             def cons_func(x):
                 return self.p.cons(x)
             
-            def cons_jac(x):
-                return self.p.cons(x, gradient=True)[1]
-            
+            #the jacobians have non-finite values which causes trust-constr to error so the block of code below is prevention
+            useful_jac = self.jac
+            try:
+                if not np.all(np.isfinite(self.jac(self.x0))):
+                    useful_jac = None
+            except Exception:
+                useful_jac = None
+                
             #scipy classes anything other than closed bounds as nonlinear
-            nonlinear_cons = NonlinearConstraint(fun=cons_func, lb=self.p.cl, ub=self.p.cu, jac=cons_jac)
+            nonlinear_cons = NonlinearConstraint(fun=cons_func, lb=self.p.cl, ub=self.p.cu)
             cons = [nonlinear_cons]
+            
             
             #start timer
             start = time.perf_counter()
-            res = minimize(self.fun, self.x0, jac=self.jac, method=method, bounds=bounds, constraints=cons)
+            if method == "trust-constr":
+                res = minimize(self.fun, self.x0, jac=useful_jac, method=method, bounds=bounds, constraints=cons, callback=timeout)
+            elif method == "COBYLA":
+                res = minimize(self.fun, self.x0, method=method, constraints=cons)
+            else:
+                res = minimize(self.fun, self.x0, jac=useful_jac, method=method, bounds=bounds, constraints=cons, callback=timeout)
             #timer doesnt start at 0 so subtract it out
             total = time.perf_counter() - start
             print("Method: " + method)
             print("Problem: " + str(self.name))
             print(f"Time: {total:.2f}")
-            print(f"Success: {res.success}\n")
-
+            print(f"Success: {res.success}")
+            print(f"Message: {res.message}")
+            
             #bounds for each variable in a list
             lower_bounds_list = []
             upper_bounds_list = []
@@ -170,18 +180,43 @@ class solver:
                 ub = bound[1]
                 lower_bounds_list.append(float(lb))
                 upper_bounds_list.append(float(ub))
+ 
+            #using numdifftools for this 
+            convex_flag = 0
+            if res.success:
+                x = res.x
+                H = nd.Hessian(self.fun)(x)
+                #np arrays needed for calculation
+                bl = np.asarray(self.p.bl, dtype=float)
+                bu = np.asarray(self.p.bu, dtype=float)
+                tol = 1e-8
+                at_lo = np.isfinite(bl) & (x <= bl + tol)
+                at_hi = np.isfinite(bu) & (x >= bu - tol)
+                active = at_lo | at_hi
+                free = ~active
 
-            #numpy arrays needed for linear algebra functions
+                if np.any(free):
+                    Hff = H[np.ix_(free, free)]
+                    eigenvalue = np.linalg.eigvalsh(Hff).min()
+                else:
+                    eigenvalue = 0.0
+
+                if eigenvalue >= -1e-6:
+                    convex_flag = 1 
+                else:
+                    convex_flag = 0
+                print(f"Convexity: {convex_flag}  (Smallest eigenvalue:{eigenvalue:.3e})\n")
 
             #use the minimum eigen value to determine the convexity of the solution
             
             if res.success:
-                return [1, total, None] 
+                return [1, total, convex_flag] 
             else:
+                print()
                 return [0, total, None] 
     
         except TimeoutError:
-            #catch all the methods that go over the 20s limit
+            #catch all the methods that go over the 20m limit
             total = time.perf_counter() - start
             print("Method: " + method)
             print("Problem: " + str(self.name))
@@ -209,7 +244,7 @@ class solver:
         
         #this is called every callback by the solver so every set amount of iterations to check time
         def timeout(xk):
-            if time.perf_counter() - start > 20:
+            if time.perf_counter() - start > 20*60:
                 raise TimeoutError
             
         def hess(x):
@@ -221,15 +256,12 @@ class solver:
         try:
             #start the timer again so it is more accurate
             start = time.perf_counter()
-            #this is the set amount of iterations for all methods
-            #ask about this
-            default_opts = dict(maxiter=40_000)
             if method == "trust-ncg":
-                res = minimize(self.fun, self.x0, jac=self.jac, hessp=hessp, method=method, callback=timeout, options=default_opts)
+                res = minimize(self.fun, self.x0, jac=self.jac, hessp=hessp, method=method, callback=timeout)
             elif method == "dogleg":
-                res = minimize(self.fun, self.x0, jac=self.jac, hess=hess, method=method, callback=timeout, options=default_opts)
+                res = minimize(self.fun, self.x0, jac=self.jac, hess=hess, method=method, callback=timeout)
             else:
-                res = minimize(self.fun, self.x0, jac=self.jac, method=method, callback=timeout, options=default_opts)
+                res = minimize(self.fun, self.x0, jac=self.jac, method=method, callback=timeout)
 
             
             #timer doesnt start at 0 so subtract it out
@@ -238,8 +270,7 @@ class solver:
             print("Problem: " + str(self.name))
             print(f"Time: {total:.2f}")
             print(f"Success: {res.success}")
-            
-            
+            print(f"Message: {res.message}")
 
             H = self.p.hess(res.x)
 
@@ -263,7 +294,7 @@ class solver:
                 return [0, total, convex_flag]
         
         except TimeoutError:
-            #catch all the methods that go over the 20s limit
+            #catch all the methods that go over the 20m limit
             total = time.perf_counter() - start
             print("Method: " + method)
             print("Problem: " + str(self.name))

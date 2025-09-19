@@ -112,8 +112,7 @@ def graph(Clist, Blist, Dlist, Tlist):
     annotate_bars(bars2, total_nonconvex)
     annotate_bars(bars3, total_fail)
 
-    plt.tight_layout()
-    plt.savefig("./outputimages/unconstrained.png", dpi=300, bbox_inches="tight")
+    plt.savefig("./outputimages/unconstrained.png")
     plt.show()
 
 def main():
@@ -122,7 +121,7 @@ def main():
     unconstrained = pycutest.find_problems(constraints='unconstrained')
     print("Unconstrained problems: " + str(len(unconstrained)))
     
-    unconstrained = unconstrained[:20]
+    unconstrained = unconstrained[:12]
     
     Clist = []
     Blist = []
