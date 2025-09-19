@@ -126,9 +126,13 @@ def main():
     simple_constraints = pycutest.find_problems(constraints='bound')
     print(f"Simple Constraints problems: {len(simple_constraints)}\n" )
     
-    #full length crashes my mac 
-    #temporarily making it 10 elements
-    simple_constraints = simple_constraints[:20]
+    #this is a list of problem names that have already been solved
+    alreadysolvedproblems = []
+    with open("./checkpointfiles/simpleCons.csv") as f:
+        for line in f:
+            line.split(",")
+            alreadysolvedproblems.append(line[0])
+    
     
     #methods L-BFG-B, TNC, Powell, Nelder-Mead
     Llist = []
@@ -136,16 +140,84 @@ def main():
     Plist = []
     Nlist = []
     
+    #problem names keeps track of the problems solved
+    #counter countes to 3 to stop the loop
+    problemNames = []
+    counter = 0
     for i in simple_constraints:
-        a = solver(i)
-        Llist.append(a.simple_bounds("L-BFGS-B"))
-        clearcache()
-        Tlist.append(a.simple_bounds("TNC"))
-        clearcache()
-        Plist.append(a.simple_bounds("Powell"))
-        clearcache()
-        Nlist.append(a.simple_bounds("Nelder-Mead"))
+        if i not in alreadysolvedproblems:
+            a = solver(i)
+            problemNames.append(i)
+            Llist.append(a.simple_bounds("L-BFGS-B"))
+            clearcache()
+            Tlist.append(a.simple_bounds("TNC"))
+            clearcache()
+            Plist.append(a.simple_bounds("Powell"))
+            clearcache()
+            Nlist.append(a.simple_bounds("Nelder-Mead"))
+            counter += 1
+        #only want 3 probs for each run
+        if counter == 3:
+            break
+        
+    #next huge block of code writes information to the csv
+    counter = 0
+    with open("./checkpointfiles/simpleCons.csv", "a") as f:
+        counter = 0
+        for i in Llist:
+            for j in i:
+                f.write(f"{problemNames[counter]},L-BFGS-B,{j[0]},{j[1]},{j[2]}\n")
+            counter += 1
+                
+        counter = 0
+        for i in Tlist:
+            for j in i:
+                f.write(f"{problemNames[counter]},TNC,{j[0]},{j[1]},{j[2]}\n")
+            counter += 1
+            
+        counter = 0
+        for i in Plist:
+            for j in i:
+                f.write(f"{problemNames[counter]},Powell,{j[0]},{j[1]},{j[2]}\n")
+            counter += 1 
+        
+        counter = 0
+        for i in Nlist:
+            for j in i:
+                f.write(f"{problemNames[counter]},Nelder-Mead,{j[0]},{j[1]},{j[2]}")
+            counter += 1
     
+    #this block gets information fom the csv
+    Llist, Tlist, Plist, Nlist, temp = [], [], [], [], []
+    with open("./checkpointfiles/simpleCons.csv") as f:
+        for line in f:
+            line.split(",")
+            if line[1] == "L-BFGS-B":
+                temp.append(line[2])
+                temp.append(line[3])
+                temp.append(line[4])
+                Llist.append(temp)
+                temp = []
+            elif line[1] == "TNC":
+                temp.append(line[2])
+                temp.append(line[3])
+                temp.append(line[4])
+                Tlist.append(temp)
+                temp = []
+            elif line[1] == "Powell":
+                temp.append(line[2])
+                temp.append(line[3])
+                temp.append(line[4])
+                Plist.append(temp)
+                temp = []
+            else:
+                temp.append(line[2])
+                temp.append(line[3])
+                temp.append(line[4])
+                Nlist.append(temp)
+                temp = []
+                
+        
     #call the graph function with the lists of lists from above
     graph(Llist, Tlist, Plist, Nlist)
     

@@ -121,27 +121,98 @@ def main():
     unconstrained = pycutest.find_problems(constraints='unconstrained')
     print("Unconstrained problems: " + str(len(unconstrained)))
     
-    unconstrained = unconstrained[:12]
+    #this is a list of problem names that have already been solved
+    alreadysolvedproblems = []
+    with open("./checkpointfiles/unconstrained.csv") as f:
+        for line in f:
+            line.split(",")
+            alreadysolvedproblems.append(line[0])
     
+    
+    #CG, BFGS, dogleg, trust-ncg
     Clist = []
     Blist = []
     Dlist = []
     Tlist = []
-    #CG, BFGS, dogleg, trust-ncg
+    
+    #problem names keeps track of the problems solved
+    #counter countes to 3 to stop the loop
+    problemNames = []
+    counter = 0
     for i in unconstrained:
-        a = solver(i)
-        Clist.append(a.unbounded("CG"))
-        clearcache()
-        Blist.append(a.unbounded("BFGS"))
-        clearcache()
-        Dlist.append(a.unbounded("dogleg"))
-        clearcache()
-        Tlist.append(a.unbounded("trust-ncg"))
+        if i not in alreadysolvedproblems:
+            a = solver(i)
+            problemNames.append(i)
+            Clist.append(a.unbounded("CG"))
+            clearcache()
+            Blist.append(a.unbounded("BFGS"))
+            clearcache()
+            Dlist.append(a.unbounded("dogleg"))
+            clearcache()
+            Tlist.append(a.unbounded("trust-ncg"))
+            counter += 1
+        if counter == 3:
+            break
+    
+    #next huge block of code writes information to the csv
+    counter = 0
+    with open("./checkpointfiles/simpleCons.csv", "a") as f:
+        counter = 0
+        for i in Clist:
+            for j in i:
+                f.write(f"{problemNames[counter]},CG,{j[0]},{j[1]},{j[2]}\n")
+            counter += 1
+                
+        counter = 0
+        for i in Blist:
+            for j in i:
+                f.write(f"{problemNames[counter]},BFGS,{j[0]},{j[1]},{j[2]}\n")
+            counter += 1
+            
+        counter = 0
+        for i in Dlist:
+            for j in i:
+                f.write(f"{problemNames[counter]},dogleg,{j[0]},{j[1]},{j[2]}\n")
+            counter += 1 
+        
+        counter = 0
+        for i in Tlist:
+            for j in i:
+                f.write(f"{problemNames[counter]},trust-ncg,{j[0]},{j[1]},{j[2]}")
+            counter += 1
+    
+    #this block gets information fom the csv
+    Clist, Blist, Dlist, Tlist, temp = [], [], [], [], []
+    with open("./checkpointfiles/unconstrained.csv") as f:
+        for line in f:
+            line.split(",")
+            if line[1] == "L-BFGS-B":
+                temp.append(line[2])
+                temp.append(line[3])
+                temp.append(line[4])
+                Clist.append(temp)
+                temp = []
+            elif line[1] == "TNC":
+                temp.append(line[2])
+                temp.append(line[3])
+                temp.append(line[4])
+                Blist.append(temp)
+                temp = []
+            elif line[1] == "Powell":
+                temp.append(line[2])
+                temp.append(line[3])
+                temp.append(line[4])
+                Dlist.append(temp)
+                temp = []
+            else:
+                temp.append(line[2])
+                temp.append(line[3])
+                temp.append(line[4])
+                Tlist.append(temp)
+                temp = []
+                
     
     #call the graph function with the lists of lists from above
     graph(Clist, Blist, Dlist, Tlist)
     
 main()
-    
-    
-    
