@@ -125,8 +125,8 @@ def main():
     alreadysolvedproblems = []
     with open("./checkpointfiles/unconstrained.csv") as f:
         for line in f:
-            line.split(",")
-            alreadysolvedproblems.append(line[0])
+            parts = line.strip().split(",")
+            alreadysolvedproblems.append(parts[0])
     
     
     #CG, BFGS, dogleg, trust-ncg
@@ -156,58 +156,66 @@ def main():
     
     #next huge block of code writes information to the csv
     counter = 0
-    with open("./checkpointfiles/simpleCons.csv", "a") as f:
+    with open("./checkpointfiles/unconstrained.csv", "a") as f:
         counter = 0
         for i in Clist:
-            for j in i:
-                f.write(f"{problemNames[counter]},CG,{j[0]},{j[1]},{j[2]}\n")
+            f.write(f"{problemNames[counter]},CG,{i[0]},{i[1]},{i[2]}\n")
             counter += 1
                 
         counter = 0
         for i in Blist:
-            for j in i:
-                f.write(f"{problemNames[counter]},BFGS,{j[0]},{j[1]},{j[2]}\n")
+            f.write(f"{problemNames[counter]},BFGS,{i[0]},{i[1]},{i[2]}\n")
             counter += 1
             
         counter = 0
         for i in Dlist:
-            for j in i:
-                f.write(f"{problemNames[counter]},dogleg,{j[0]},{j[1]},{j[2]}\n")
+            f.write(f"{problemNames[counter]},dogleg,{i[0]},{i[1]},{i[2]}\n")
             counter += 1 
         
         counter = 0
         for i in Tlist:
-            for j in i:
-                f.write(f"{problemNames[counter]},trust-ncg,{j[0]},{j[1]},{j[2]}")
+            f.write(f"{problemNames[counter]},trust-ncg,{i[0]},{i[1]},{i[2]}")
             counter += 1
     
     #this block gets information fom the csv
     Clist, Blist, Dlist, Tlist, temp = [], [], [], [], []
     with open("./checkpointfiles/unconstrained.csv") as f:
         for line in f:
-            line.split(",")
-            if line[1] == "L-BFGS-B":
-                temp.append(line[2])
-                temp.append(line[3])
-                temp.append(line[4])
+            line = line.strip().split(",")
+            if line[1] == "CG":
+                temp.append(int(line[2]))
+                temp.append(float(line[3]))
+                if line[4].lower() == "none":
+                    temp.append(None)
+                else:
+                    temp.append(int(line[4]))
                 Clist.append(temp)
                 temp = []
-            elif line[1] == "TNC":
-                temp.append(line[2])
-                temp.append(line[3])
-                temp.append(line[4])
+            elif line[1] == "BFGS":
+                temp.append(int(line[2]))
+                temp.append(float(line[3]))
+                if line[4].lower() == "none":
+                    temp.append(None)
+                else:
+                    temp.append(int(line[4]))
                 Blist.append(temp)
                 temp = []
-            elif line[1] == "Powell":
-                temp.append(line[2])
-                temp.append(line[3])
-                temp.append(line[4])
+            elif line[1] == "dogleg":
+                temp.append(int(line[2]))
+                temp.append(float(line[3]))
+                if line[4].lower() == "none":
+                    temp.append(None)
+                else:
+                    temp.append(int(line[4]))
                 Dlist.append(temp)
                 temp = []
             else:
-                temp.append(line[2])
-                temp.append(line[3])
-                temp.append(line[4])
+                temp.append(int(line[2]))
+                temp.append(float(line[3]))
+                if line[4].lower() == "none":
+                    temp.append(None)
+                else:
+                    temp.append(int(line[4]))
                 Tlist.append(temp)
                 temp = []
                 

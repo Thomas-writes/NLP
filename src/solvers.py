@@ -133,7 +133,7 @@ class solver:
         start = time.perf_counter()
         
         def timeout(xk, state=None):
-            if time.perf_counter() - start > 20:
+            if time.perf_counter() - start > 60*20:
                 raise TimeoutError
             
         try:

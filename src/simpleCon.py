@@ -114,7 +114,6 @@ def graph(Llist, Tlist, Plist, Nlist):
     annotate_bars(bars3, total_fail)
 
     plt.savefig("./outputimages/simpleconstrained.png")
-    plt.show()
 
     
     
@@ -130,8 +129,8 @@ def main():
     alreadysolvedproblems = []
     with open("./checkpointfiles/simpleCons.csv") as f:
         for line in f:
-            line.split(",")
-            alreadysolvedproblems.append(line[0])
+            parts = line.strip().split(",")
+            alreadysolvedproblems.append(parts[0])
     
     
     #methods L-BFG-B, TNC, Powell, Nelder-Mead
@@ -165,55 +164,63 @@ def main():
     with open("./checkpointfiles/simpleCons.csv", "a") as f:
         counter = 0
         for i in Llist:
-            for j in i:
-                f.write(f"{problemNames[counter]},L-BFGS-B,{j[0]},{j[1]},{j[2]}\n")
+            f.write(f"{problemNames[counter]},L-BFGS-B,{i[0]},{i[1]},{i[2]}\n")
             counter += 1
                 
         counter = 0
         for i in Tlist:
-            for j in i:
-                f.write(f"{problemNames[counter]},TNC,{j[0]},{j[1]},{j[2]}\n")
+            f.write(f"{problemNames[counter]},TNC,{i[0]},{i[1]},{i[2]}\n")
             counter += 1
             
         counter = 0
         for i in Plist:
-            for j in i:
-                f.write(f"{problemNames[counter]},Powell,{j[0]},{j[1]},{j[2]}\n")
+            f.write(f"{problemNames[counter]},Powell,{i[0]},{i[1]},{i[2]}\n")
             counter += 1 
         
         counter = 0
         for i in Nlist:
-            for j in i:
-                f.write(f"{problemNames[counter]},Nelder-Mead,{j[0]},{j[1]},{j[2]}")
+            f.write(f"{problemNames[counter]},Nelder-Mead,{i[0]},{i[1]},{i[2]}\n")
             counter += 1
     
     #this block gets information fom the csv
     Llist, Tlist, Plist, Nlist, temp = [], [], [], [], []
     with open("./checkpointfiles/simpleCons.csv") as f:
         for line in f:
-            line.split(",")
+            line = line.strip().split(",")
             if line[1] == "L-BFGS-B":
-                temp.append(line[2])
-                temp.append(line[3])
-                temp.append(line[4])
+                temp.append(int(line[2]))
+                temp.append(float(line[3]))
+                if line[4].lower() == "none":
+                    temp.append(None)
+                else:
+                    temp.append(int(line[4]))
                 Llist.append(temp)
                 temp = []
             elif line[1] == "TNC":
-                temp.append(line[2])
-                temp.append(line[3])
-                temp.append(line[4])
+                temp.append(int(line[2]))
+                temp.append(float(line[3]))
+                if line[4].lower() == "none":
+                    temp.append(None)
+                else:
+                    temp.append(int(line[4]))
                 Tlist.append(temp)
                 temp = []
             elif line[1] == "Powell":
-                temp.append(line[2])
-                temp.append(line[3])
-                temp.append(line[4])
+                temp.append(int(line[2]))
+                temp.append(float(line[3]))
+                if line[4].lower() == "none":
+                    temp.append(None)
+                else:
+                    temp.append(int(line[4]))
                 Plist.append(temp)
                 temp = []
             else:
-                temp.append(line[2])
-                temp.append(line[3])
-                temp.append(line[4])
+                temp.append(int(line[2]))
+                temp.append(float(line[3]))
+                if line[4].lower() == "none":
+                    temp.append(None)
+                else:
+                    temp.append(int(line[4]))
                 Nlist.append(temp)
                 temp = []
                 
