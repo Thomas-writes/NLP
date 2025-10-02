@@ -111,7 +111,7 @@ def graph(Tlist, Slist, Clist):
     annotate_bars(bars2, total_nonconvex)
     annotate_bars(bars3, total_fail)
 
-    plt.savefig("./outputimages/complexonstrained.png")
+    plt.savefig("./outputimages/complexconstrained.png")
     plt.show()
 
 def main():

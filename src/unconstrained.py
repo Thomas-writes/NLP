@@ -113,7 +113,6 @@ def graph(Clist, Blist, Dlist, Tlist):
     annotate_bars(bars3, total_fail)
 
     plt.savefig("./outputimages/unconstrained.png")
-    plt.show()
 
 def main():
     clearcache()
@@ -151,7 +150,7 @@ def main():
             clearcache()
             Tlist.append(a.unbounded("trust-ncg"))
             counter += 1
-        if counter == 3:
+        if counter == 2:
             break
     
     #next huge block of code writes information to the csv
@@ -174,7 +173,7 @@ def main():
         
         counter = 0
         for i in Tlist:
-            f.write(f"{problemNames[counter]},trust-ncg,{i[0]},{i[1]},{i[2]}")
+            f.write(f"{problemNames[counter]},trust-ncg,{i[0]},{i[1]},{i[2]}\n")
             counter += 1
     
     #this block gets information fom the csv
