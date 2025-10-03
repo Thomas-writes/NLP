@@ -28,6 +28,13 @@ class solver:
     
     
     def simple_bounds(self, method):
+        #This is a check to make my mac not crash :(
+        n = self.p.n
+        m = getattr(self.p, "m", 0)
+        if n > 5000 or m > 20000:
+            print(f"Skipping {self.name}: too large for {method} (n={n}, m={m})\n")
+            return [0, 0.0, None]
+
         #start timer so it has full function scope
         start = time.perf_counter()
         
@@ -239,6 +246,12 @@ class solver:
     
         
     def unbounded(self, method):
+         #This is a check to make my mac not crash :(
+        n = self.p.n
+        m = getattr(self.p, "m", 0)
+        if n > 4000 or m > 10000:
+            print(f"Skipping {self.name}: too large for {method} (n={n}, m={m})\n")
+            return [0, 0.0, None]
         #start timer so it has full function scope
         start = time.perf_counter()
         
@@ -285,7 +298,8 @@ class solver:
                 convex_flag = 1
             else:
                 convex_flag = 0
-                
+            
+            print(f"Dimension: {self.p.n}")
             print(f"Convexity: {convex_flag}  (Smallest eigenvalue:{eigenvalue:.3e})\n")
             
             if res.success:
@@ -299,6 +313,7 @@ class solver:
             print("Method: " + method)
             print("Problem: " + str(self.name))
             print(f"Time: {total:.2f}")
+            print(f"Dimension: {self.p.n}")
             print(f"Success: Timeout\n")
             return [0, total, None]
         
@@ -308,6 +323,7 @@ class solver:
             print("Method: " + method)
             print("Problem: " + str(self.name))
             print(f"Time: {total:.2f}")
+            print(f"Dimension: {self.p.n}")
             print(f"Error: {e}\n")
             return [0, total, None]    
     

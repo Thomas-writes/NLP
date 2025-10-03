@@ -112,7 +112,6 @@ def graph(Tlist, Slist, Clist):
     annotate_bars(bars3, total_fail)
 
     plt.savefig("./outputimages/complexconstrained.png")
-    plt.show()
 
 def main():
     clearcache()
@@ -121,18 +120,84 @@ def main():
     print("Complex Constraints problems: " + str(len(complex_constraints)))
     complex_constraints = complex_constraints[:5]
     
+    alreadysolvedproblems = []
+    with open("./checkpointfiles/complexCons.csv") as f:
+        for line in f:
+            parts = line.strip().split(",")
+            alreadysolvedproblems.append(parts[0])
+    
     Tlist = []
     Slist = []
     Clist = []
     
+    #problem names keeps track of the problems solved
+    #counter countes to 3 to stop the loop
+    problemNames = []
+    counter = 0
     for i in complex_constraints:
-        a = solver(i)
-        Tlist.append(a.complex_bounds("trust-constr"))
-        clearcache()
-        Slist.append(a.complex_bounds("SLSQP"))
-        clearcache()
-        Clist.append(a.complex_bounds("COBYLA"))
+        if i not in alreadysolvedproblems:
+            a = solver(i)
+            problemNames.append(i)
+            Tlist.append(a.simple_bounds("trust-constr"))
+            clearcache()
+            Slist.append(a.simple_bounds("SLSQP"))
+            clearcache()
+            Clist.append(a.simple_bounds("COBYLA"))
+            counter += 1
+        #only want 3 probs for each run
+        if counter == 3:
+            break
+    
+    counter = 0
+    with open("./checkpointfiles/complexCons.csv", "a") as f:
+        counter = 0
+        for i in Tlist:
+            f.write(f"{problemNames[counter]},trust-constr,{i[0]},{i[1]},{i[2]}\n")
+            counter += 1
+                
+        counter = 0
+        for i in Slist:
+            f.write(f"{problemNames[counter]},SLSQP,{i[0]},{i[1]},{i[2]}\n")
+            counter += 1
+            
+        counter = 0
+        for i in Clist:
+            f.write(f"{problemNames[counter]},COBYLA,{i[0]},{i[1]},{i[2]}\n")
+            counter += 1 
         
+        
+    Tlist, Slist, Clist, temp = [], [], [], []
+    with open("./checkpointfiles/complexCons.csv") as f:
+        for line in f:
+            line = line.strip().split(",")
+            if line[1] == "trust-constr":
+                temp.append(int(line[2]))
+                temp.append(float(line[3]))
+                if line[4].lower() == "none":
+                    temp.append(None)
+                else:
+                    temp.append(int(line[4]))
+                Tlist.append(temp)
+                temp = []
+            elif line[1] == "SLSQP":
+                temp.append(int(line[2]))
+                temp.append(float(line[3]))
+                if line[4].lower() == "none":
+                    temp.append(None)
+                else:
+                    temp.append(int(line[4]))
+                Slist.append(temp)
+                temp = []
+            elif line[1] == "COBYLA":
+                temp.append(int(line[2]))
+                temp.append(float(line[3]))
+                if line[4].lower() == "none":
+                    temp.append(None)
+                else:
+                    temp.append(int(line[4]))
+                Clist.append(temp)
+                temp = []
+                
     graph(Tlist, Slist, Clist)
         
     
