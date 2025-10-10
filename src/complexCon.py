@@ -118,7 +118,6 @@ def main():
     
     complex_constraints = pycutest.find_problems(constraints=['linear', 'quadratic', 'adjacency', 'other'])
     print("Complex Constraints problems: " + str(len(complex_constraints)))
-    complex_constraints = complex_constraints[:5]
     
     alreadysolvedproblems = []
     with open("./checkpointfiles/complexCons.csv") as f:
@@ -138,14 +137,14 @@ def main():
         if i not in alreadysolvedproblems:
             a = solver(i)
             problemNames.append(i)
-            Tlist.append(a.simple_bounds("trust-constr"))
+            Tlist.append(a.complex_bounds("trust-constr"))
             clearcache()
-            Slist.append(a.simple_bounds("SLSQP"))
+            Slist.append(a.complex_bounds("SLSQP"))
             clearcache()
-            Clist.append(a.simple_bounds("COBYLA"))
+            Clist.append(a.complex_bounds("COBYLA"))
             counter += 1
         #only want 3 probs for each run
-        if counter == 3:
+        if counter == 2:
             break
     
     counter = 0

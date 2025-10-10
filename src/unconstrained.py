@@ -128,6 +128,7 @@ def main():
             alreadysolvedproblems.append(parts[0])
     
     
+    
     #CG, BFGS, dogleg, trust-ncg
     Clist = []
     Blist = []

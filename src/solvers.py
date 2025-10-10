@@ -24,9 +24,6 @@ class solver:
     def jac(self, x):
         return self.p.obj(x, gradient=True)[1]
     
-    
-    
-    
     def simple_bounds(self, method):
         #This is a check to make my mac not crash :(
         n = self.p.n
@@ -137,6 +134,12 @@ class solver:
         
     
     def complex_bounds(self, method):
+        n = self.p.n
+        m = getattr(self.p, "m", 0)
+        if n > 5000 or m > 20000:
+            print(f"Skipping {self.name}: too large for {method} (n={n}, m={m})\n")
+            return [0, 0.0, None]
+
         start = time.perf_counter()
         
         def timeout(xk, state=None):
@@ -145,7 +148,7 @@ class solver:
             
         try:
             #needed for trust-constr
-            bounds = Bounds(np.asarray(self.p.bl), np.asarray(self.p.bu))
+            bounds = Bounds(np.asarray(self.p.bl), np.asarray(self.p.bu), keep_feasible=True)
             #this whole next block is for constraint functions
             def cons_func(x):
                 return self.p.cons(x)
@@ -239,9 +242,6 @@ class solver:
             print(f"Time: {total:.2f}")
             print(f"Error: {e}\n")
             return [0, total, None]
-    
-    
-    
     
     
         

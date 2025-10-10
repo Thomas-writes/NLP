@@ -155,8 +155,8 @@ def main():
             clearcache()
             Nlist.append(a.simple_bounds("Nelder-Mead"))
             counter += 1
-        #only want 3 probs for each run
-        if counter == 3:
+        #only want 2 probs for each run
+        if counter == 2:
             break
         
     #next huge block of code writes information to the csv
