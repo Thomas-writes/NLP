@@ -27,8 +27,7 @@ class solver:
     def simple_bounds(self, method):
         #This is a check to make my mac not crash :(
         n = self.p.n
-        m = getattr(self.p, "m", 0)
-        if n > 5000 or m > 20000:
+        if n > 5000:
             print(f"Skipping {self.name}: too large for {method} (n={n}, m={m})\n")
             return [0, 0.0, None]
 
@@ -135,8 +134,7 @@ class solver:
     
     def complex_bounds(self, method):
         n = self.p.n
-        m = getattr(self.p, "m", 0)
-        if n > 5000 or m > 20000:
+        if n > 3000:
             print(f"Skipping {self.name}: too large for {method} (n={n}, m={m})\n")
             return [0, 0.0, None]
 
@@ -248,8 +246,7 @@ class solver:
     def unbounded(self, method):
          #This is a check to make my mac not crash :(
         n = self.p.n
-        m = getattr(self.p, "m", 0)
-        if n > 4000 or m > 10000:
+        if n > 4000:
             print(f"Skipping {self.name}: too large for {method} (n={n}, m={m})\n")
             return [0, 0.0, None]
         #start timer so it has full function scope
