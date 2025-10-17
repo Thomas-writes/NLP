@@ -2,6 +2,7 @@ import os
 import time
 import shutil
 import pycutest
+import traceback
 import numpy as np
 import numdifftools as nd
 from scipy.optimize import minimize, NonlinearConstraint, Bounds
@@ -27,8 +28,8 @@ class solver:
     def simple_bounds(self, method):
         #This is a check to make my mac not crash :(
         n = self.p.n
-        if n > 5000:
-            print(f"Skipping {self.name}: too large for {method} (n={n}, m={m})\n")
+        if n > 3000:
+            print(f"Skipping {self.name}: too large for {method} (n={n})\n")
             return [0, 0.0, None]
 
         #start timer so it has full function scope
@@ -135,7 +136,7 @@ class solver:
     def complex_bounds(self, method):
         n = self.p.n
         if n > 3000:
-            print(f"Skipping {self.name}: too large for {method} (n={n}, m={m})\n")
+            print(f"Skipping {self.name}: too large for {method} (n={n})\n")
             return [0, 0.0, None]
 
         start = time.perf_counter()
@@ -230,6 +231,7 @@ class solver:
             print("Problem: " + str(self.name))
             print(f"Time: {total:.2f}")
             print(f"Success: Timeout\n")
+            traceback.print_exc()
             return [0, total, None]
         
         except Exception as e:
@@ -239,6 +241,7 @@ class solver:
             print("Problem: " + str(self.name))
             print(f"Time: {total:.2f}")
             print(f"Error: {e}\n")
+            traceback.print_exc()
             return [0, total, None]
     
     
@@ -247,7 +250,7 @@ class solver:
          #This is a check to make my mac not crash :(
         n = self.p.n
         if n > 4000:
-            print(f"Skipping {self.name}: too large for {method} (n={n}, m={m})\n")
+            print(f"Skipping {self.name}: too large for {method} (n={n})\n")
             return [0, 0.0, None]
         #start timer so it has full function scope
         start = time.perf_counter()
@@ -322,6 +325,7 @@ class solver:
             print(f"Time: {total:.2f}")
             print(f"Dimension: {self.p.n}")
             print(f"Error: {e}\n")
+            
             return [0, total, None]    
     
     
