@@ -1,6 +1,4 @@
-import matplotlib.pyplot as plt
 import pycutest
-import numpy as np
 from solvers import solver, clearcache
 
 #methods are L-BFGS-B, TNC, Powell, Nelder-Mead
@@ -15,7 +13,7 @@ def main():
     
     #this is a list of problem names that have already been solved
     alreadysolvedproblems = []
-    with open("./checkpointfiles/simpleCons.csv") as f:
+    with open("./checkpointfiles/type1constraints.csv") as f:
         for line in f:
             parts = line.strip().split(",")
             alreadysolvedproblems.append(parts[0])
@@ -48,26 +46,29 @@ def main():
             break
         
     #next huge block of code writes information to the csv
-    counter = 0
-    with open("./checkpointfiles/simpleCons.csv", "a") as f:
+    with open("./checkpointfiles/type1constraints.csv", "a") as f:
         counter = 0
         for i in Llist:
-            f.write(f"{problemNames[counter]},L-BFGS-B,{i[0]},{i[1]},{i[2]}\n")
+            p = pycutest.import_problem(problemNames[counter])
+            f.write(f"{problemNames[counter]},L-BFGS-B,{i[0]},{i[1]},{i[2]},{p.n},\n")
             counter += 1
                 
         counter = 0
         for i in Tlist:
-            f.write(f"{problemNames[counter]},TNC,{i[0]},{i[1]},{i[2]}\n")
+            p = pycutest.import_problem(problemNames[counter])
+            f.write(f"{problemNames[counter]},TNC,{i[0]},{i[1]},{i[2]},{p.n},\n")
             counter += 1
             
         counter = 0
         for i in Plist:
-            f.write(f"{problemNames[counter]},Powell,{i[0]},{i[1]},{i[2]}\n")
+            p = pycutest.import_problem(problemNames[counter])
+            f.write(f"{problemNames[counter]},Powell,{i[0]},{i[1]},{i[2]},{p.n},\n")
             counter += 1 
         
         counter = 0
         for i in Nlist:
-            f.write(f"{problemNames[counter]},Nelder-Mead,{i[0]},{i[1]},{i[2]}\n")
+            p = pycutest.import_problem(problemNames[counter])
+            f.write(f"{problemNames[counter]},Nelder-Mead,{i[0]},{i[1]},{i[2]},{p.n},\n")
             counter += 1
     
 main()

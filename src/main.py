@@ -11,7 +11,7 @@ def main():
             line.append(p.n)
             for i in p.bu:
                 if i > 1.e19:
-                    line[2] = 0
+                    line[4] = 0
             allLines.append(line)
     
     counter = 0
@@ -21,9 +21,16 @@ def main():
             line = line.strip().split(",")
             p = pycutest.import_problem(line[0])
             line.append(p.n)
-            line[2] = 0
+            line[4] = 0
             allLines.append(line)
             print(counter)
+            
+    with open("./checkpointfiles/type1constraints.csv", "a") as f:
+        for line in allLines:
+            for i in line:
+                f.write(f"{i},")
+            f.write("\n")
+
     
     allLines2 = []
     with open("./checkpointfiles/complexCons.csv") as f:
@@ -34,7 +41,7 @@ def main():
             line.append(p.n)
             for i in p.bu:
                 if i > 1.e19:
-                    line[2] = 0
+                    line[4] = 0
             allLines2.append(line)
             print(counter)
     

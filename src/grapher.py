@@ -3,9 +3,9 @@ import numpy as np
 
 def cleaner(list):
     #line1 = name 
-    #line2 = convexity 
+    #line2 = success 
     #line3 = time 
-    #line4 = success 
+    #line4 = convexity 
     #line5 = number of variables
     temp = []
     temp.append(int(list[2]))
@@ -38,21 +38,21 @@ def graph():
     with open("./checkpointfiles/type1constraints.csv") as f:
         for line in f:
             line = line.strip().split(",")
-            if line[1] == "L-BFGS-B":
+            if line[1] == "L-BFGS-B" and line[2].lower() != "none":
                 Llist.append(cleaner(line))
-            elif line[1] == "TNC":
+            elif line[1] == "TNC" and line[2].lower() != "none":
                 Tlist.append(cleaner(line))
-            elif line[1] == "Powell":
+            elif line[1] == "Powell" and line[2].lower() != "none":
                 Plist.append(cleaner(line))
-            elif line[1] == "Nelder-Mead":
+            elif line[1] == "Nelder-Mead" and line[2].lower() != "none":
                 Nlist.append(cleaner(line))
-            elif line[1] == "CG":
+            elif line[1] == "CG" and line[2].lower() != "none":
                 Clist.append(cleaner(line))
-            elif line[1] == "BFGS":
+            elif line[1] == "BFGS" and line[2].lower() != "none":
                 Blist.append(cleaner(line))
-            elif line[1] == "dogleg":
+            elif line[1] == "dogleg" and line[2].lower() != "none":
                 Dlist.append(cleaner(line))
-            elif line[1] == "trust-ncg":
+            elif line[1] == "trust-ncg" and line[2].lower() != "none":
                 TNlist.append(cleaner(line))
                 
                 
@@ -60,11 +60,14 @@ def graph():
     with open("./checkpointfiles/type2constraints.csv") as f:
         for line in f:
             line = line.strip().split(",")
-            if line[1] == "trust-constr":
+            if line[1] == "trust-constr" and line[2].lower() != "none":
+                print(line[2].lower())
                 TClist.append(cleaner(line))
-            elif line[1] == "SLSQP":
+            elif line[1] == "SLSQP" and line[2].lower() != "none":
+                print(line[2].lower())
                 SQlist.append(cleaner(line))
-            elif line[1] == "COBYLA":
+            elif line[1] == "COBYLA" and line[2].lower() != "none":
+                print(line[2].lower())
                 COlist.append(cleaner(line))
         
     
@@ -82,9 +85,9 @@ def graph():
         convexity = []
         success = []
         for r in runs:
-            success.append(r[2])
+            success.append(r[0])
             time.append(r[1])
-            convexity.append(r[0])
+            convexity.append(r[2])
 
         #use the convexity calculation to sort into different convexities
         #might remap this into a function if graph needs to graph other things
