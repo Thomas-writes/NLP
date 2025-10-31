@@ -46,7 +46,7 @@ class solver:
         n = self.p.n
         if n > 3000:
             print(f"Skipping {self.name}: too large for {method} (n={n})\n")
-            return [None, 0.0, None]
+            return [None, 0.0, None, None]
 
         #start timer so it has full function scope
         start = time.perf_counter()
@@ -97,7 +97,7 @@ class solver:
                     lb = bound[0]
                     ub = bound[1]
                     lower_bounds_list.append(float(lb))
-                    upper_bounds_list.append(float(ub))
+                    upper_bounds_list.append(float(ub)) 
 
                 #numpy arrays needed for linear algebra functions
                 lower_bounds = np.array(lower_bounds_list, dtype=float)
@@ -112,24 +112,21 @@ class solver:
                 #this gives indices of free variables which is used for the reduced hessian eigenvalues
                 #[0] because where returns a tuple and we only care about the first one
                 free_indices = np.where(np.logical_not(variable_at_bound))[0]
-                if free_indices.size == 0:
-                    convex_flag = None
-                else:
-                    #H_red is the reduced hessian after free indices have been 
-                    H_red = H[np.ix_(free_indices, free_indices)]
-                    #Hessian is supposed to be symetric by definition
-                    #take the average of the estimate with the transpose to get closer to symetries
-                    H_red = 0.5 * (H_red + H_red.T)
-                    #get the smallest eigenvalue - returns in ascending order so [0] is the smallest
-                    eigenvalue = np.linalg.eigvalsh(H_red)[0]
 
-                    #use the minimum eigen value to determine the convexity of the solution
-                    if eigenvalue >= -1e-6:
-                        convex_flag = 1
-                    else:
-                        convex_flag = 0
+                #H_red is the reduced hessian after free indices have been 
+                H_red = H[np.ix_(free_indices, free_indices)]
+                #Hessian is supposed to be symetric by definition
+                #take the average of the estimate with the transpose to get closer to symetries
+                H_red = 0.5 * (H_red + H_red.T)
+                #get the smallest eigenvalue - returns in ascending order so [0] is the smallest
+                eigenvalue = np.linalg.eigvalsh(H_red)[0]
+                #use the minimum eigen value to determine the convexity of the solution
+                if eigenvalue >= -1e-6:
+                    convex_flag = 1
+                else:
+                    convex_flag = 0
                         
-                    print(f"Convexity: {convex_flag}  (Smallest eigenvalue:{eigenvalue:.3e})")
+                print(f"Convexity: {convex_flag}  (Smallest eigenvalue:{eigenvalue:.3e})")
 
                 if res.success:
                     success_times.append(total)
@@ -149,7 +146,7 @@ class solver:
             if success_times:
                 avg_time = float(np.mean(success_times))
             else:
-                0.0
+                avg_time = 0.0
                 
             #if one is nonconvex all are
             if (any(c == 0 for c in convex_flags) or any(i>=1e19 for i in self.p.bu)):
@@ -163,25 +160,209 @@ class solver:
             print(f"Avg Time (successful runs only): {avg_time:.2f}")
             print(f"Overall Convexity: {overall_convex}\n")
 
-            return [1, avg_time, overall_convex]
+            if num_successes > 0:
+                return [1, avg_time, overall_convex, None]
+            else:
+                return [0, avg_time, overall_convex, None]
 
         except TimeoutError:
             #catch all the methods that go over the 20m limit
+            try:
+                H = self.p.hess(self.x0) 
+
+                #bounds for each variable in a list
+                lower_bounds_list = []
+                upper_bounds_list = []
+                for bound in self.pbounds:
+                    lb = bound[0]
+                    ub = bound[1]
+                    lower_bounds_list.append(float(lb))
+                    upper_bounds_list.append(float(ub)) 
+
+                #numpy arrays needed for linear algebra functions
+                lower_bounds = np.array(lower_bounds_list, dtype=float)
+                upper_bounds = np.array(upper_bounds_list, dtype=float)
+
+                #at_upper and at_lower store booleans and is true if a variable is at the bound with a tolerance 1e-8
+                at_lower = np.isclose(self.x0, lower_bounds, atol=1e-8)
+                at_upper = np.isclose(self.x0, upper_bounds, atol=1e-8)
+                
+                #gets all the variables at the bounds in a boolean mask (similar to a list)
+                variable_at_bound = at_lower | at_upper
+                #this gives indices of free variables which is used for the reduced hessian eigenvalues
+                #[0] because where returns a tuple and we only care about the first one
+                free_indices = np.where(np.logical_not(variable_at_bound))[0]
+
+                #H_red is the reduced hessian after free indices have been 
+                H_red = H[np.ix_(free_indices, free_indices)]
+                #Hessian is supposed to be symetric by definition
+                #take the average of the estimate with the transpose to get closer to symetries
+                H_red = 0.5 * (H_red + H_red.T)
+                #get the smallest eigenvalue - returns in ascending order so [0] is the smallest
+                eigenvalue = np.linalg.eigvalsh(H_red)[0]
+                #use the minimum eigen value to determine the convexity of the solution
+                if eigenvalue >= -1e-6:
+                    convex_flag = 1
+                else:
+                    convex_flag = 0
+            except:
+                return [None, 0.0, None, None]
+            
             total = time.perf_counter() - start
             print("Method: " + method)
             print("Problem: " + str(self.name))
             print(f"Time: {total:.2f}")
             print(f"Success: Timeout\n")
-            return [0, total, None]
+            return [0, total, convex_flag, "Timeout"]
+        
+        except ValueError:
+            try: 
+                H = self.p.hess(self.x0) 
+
+                #bounds for each variable in a list
+                lower_bounds_list = []
+                upper_bounds_list = []
+                for bound in self.pbounds:
+                    lb = bound[0]
+                    ub = bound[1]
+                    lower_bounds_list.append(float(lb))
+                    upper_bounds_list.append(float(ub)) 
+
+                #numpy arrays needed for linear algebra functions
+                lower_bounds = np.array(lower_bounds_list, dtype=float)
+                upper_bounds = np.array(upper_bounds_list, dtype=float)
+
+                #at_upper and at_lower store booleans and is true if a variable is at the bound with a tolerance 1e-8
+                at_lower = np.isclose(self.x0, lower_bounds, atol=1e-8)
+                at_upper = np.isclose(self.x0, upper_bounds, atol=1e-8)
+                
+                #gets all the variables at the bounds in a boolean mask (similar to a list)
+                variable_at_bound = at_lower | at_upper
+                #this gives indices of free variables which is used for the reduced hessian eigenvalues
+                #[0] because where returns a tuple and we only care about the first one
+                free_indices = np.where(np.logical_not(variable_at_bound))[0]
+
+                #H_red is the reduced hessian after free indices have been 
+                H_red = H[np.ix_(free_indices, free_indices)]
+                #Hessian is supposed to be symetric by definition
+                #take the average of the estimate with the transpose to get closer to symetries
+                H_red = 0.5 * (H_red + H_red.T)
+                #get the smallest eigenvalue - returns in ascending order so [0] is the smallest
+                eigenvalue = np.linalg.eigvalsh(H_red)[0]
+                #use the minimum eigen value to determine the convexity of the solution
+                if eigenvalue >= -1e-6:
+                    convex_flag = 1
+                else:
+                    convex_flag = 0
+            except:
+                return [None, 0.0, None, None]
+            
+            total = time.perf_counter() - start
+            print("Method: " + method)
+            print("Problem: " + str(self.name))
+            print(f"Time: {total:.2f}")
+            print(f"Dimension: {self.p.n}")
+            print(f"Success: Nan/Inf\n")
+            return [0, total, convex_flag, "Nan/Inf"]
+        
+        except FloatingPointError:
+            try: 
+                H = self.p.hess(self.x0) 
+
+                #bounds for each variable in a list
+                lower_bounds_list = []
+                upper_bounds_list = []
+                for bound in self.pbounds:
+                    lb = bound[0]
+                    ub = bound[1]
+                    lower_bounds_list.append(float(lb))
+                    upper_bounds_list.append(float(ub)) 
+
+                #numpy arrays needed for linear algebra functions
+                lower_bounds = np.array(lower_bounds_list, dtype=float)
+                upper_bounds = np.array(upper_bounds_list, dtype=float)
+
+                #at_upper and at_lower store booleans and is true if a variable is at the bound with a tolerance 1e-8
+                at_lower = np.isclose(self.x0, lower_bounds, atol=1e-8)
+                at_upper = np.isclose(self.x0, upper_bounds, atol=1e-8)
+                
+                #gets all the variables at the bounds in a boolean mask (similar to a list)
+                variable_at_bound = at_lower | at_upper
+                #this gives indices of free variables which is used for the reduced hessian eigenvalues
+                #[0] because where returns a tuple and we only care about the first one
+                free_indices = np.where(np.logical_not(variable_at_bound))[0]
+
+                #H_red is the reduced hessian after free indices have been 
+                H_red = H[np.ix_(free_indices, free_indices)]
+                #Hessian is supposed to be symetric by definition
+                #take the average of the estimate with the transpose to get closer to symetries
+                H_red = 0.5 * (H_red + H_red.T)
+                #get the smallest eigenvalue - returns in ascending order so [0] is the smallest
+                eigenvalue = np.linalg.eigvalsh(H_red)[0]
+                #use the minimum eigen value to determine the convexity of the solution
+                if eigenvalue >= -1e-6:
+                    convex_flag = 1
+                else:
+                    convex_flag = 0
+            except:
+                return [None, 0.0, None, None]
+            
+            total = time.perf_counter() - start
+            print("Method: " + method)
+            print("Problem: " + str(self.name))
+            print(f"Time: {total:.2f}")
+            print(f"Dimension: {self.p.n}")
+            print(f"Success: Float Error\n")
+            return [0, total, convex_flag, "Float Error"]
         
         except Exception as e:
+            try: 
+                H = self.p.hess(self.x0) 
+
+                #bounds for each variable in a list
+                lower_bounds_list = []
+                upper_bounds_list = []
+                for bound in self.pbounds:
+                    lb = bound[0]
+                    ub = bound[1]
+                    lower_bounds_list.append(float(lb))
+                    upper_bounds_list.append(float(ub)) 
+
+                #numpy arrays needed for linear algebra functions
+                lower_bounds = np.array(lower_bounds_list, dtype=float)
+                upper_bounds = np.array(upper_bounds_list, dtype=float)
+
+                #at_upper and at_lower store booleans and is true if a variable is at the bound with a tolerance 1e-8
+                at_lower = np.isclose(self.x0, lower_bounds, atol=1e-8)
+                at_upper = np.isclose(self.x0, upper_bounds, atol=1e-8)
+                
+                #gets all the variables at the bounds in a boolean mask (similar to a list)
+                variable_at_bound = at_lower | at_upper
+                #this gives indices of free variables which is used for the reduced hessian eigenvalues
+                #[0] because where returns a tuple and we only care about the first one
+                free_indices = np.where(np.logical_not(variable_at_bound))[0]
+
+                #H_red is the reduced hessian after free indices have been 
+                H_red = H[np.ix_(free_indices, free_indices)]
+                #Hessian is supposed to be symetric by definition
+                #take the average of the estimate with the transpose to get closer to symetries
+                H_red = 0.5 * (H_red + H_red.T)
+                #get the smallest eigenvalue - returns in ascending order so [0] is the smallest
+                eigenvalue = np.linalg.eigvalsh(H_red)[0]
+                #use the minimum eigen value to determine the convexity of the solution
+                if eigenvalue >= -1e-6:
+                    convex_flag = 1
+                else:
+                    convex_flag = 0
+            except:
+                return [None, 0.0, None, None]
             #catch any errors 
             total = time.perf_counter() - start
             print("Method: " + method)
             print("Problem: " + str(self.name))
             print(f"Time: {total:.2f}")
             print(f"Error: {e}\n")
-            return [0, total, None]
+            return [0, total, convex_flag, "Solver Error"]
         
         
     
@@ -189,7 +370,7 @@ class solver:
         n = self.p.n
         if n > 3000:
             print(f"Skipping {self.name}: too large for {method} (n={n})\n")
-            return [None, 0.0, None]
+            return [None, 0.0, None, None]
 
         start = time.perf_counter()
         
@@ -249,7 +430,7 @@ class solver:
             #using numdifftools for this 
                 convex_flag = None
                 if res.success:
-                    x = res.x
+                    x = self.x0
                     H = nd.Hessian(self.fun)(x)
                     #np arrays needed for calculation
                     bl = np.asarray(self.p.bl, dtype=float)
@@ -289,38 +470,176 @@ class solver:
                 
             print(f"Avg Success Rate: {avg_success:.2f}")
             print(f"Avg Time (successful runs only): {avg_time:.2f}")
-            print(f"Overall Convexity: {overall_convex}\n")
+            print(f"'Overall' Convexity: {overall_convex}\n")
 
-            return [1, avg_time, overall_convex] 
+            if num_successes > 0:
+                return [1, avg_time, overall_convex, None]
+            else:
+                return [0, avg_time, overall_convex, None]
     
         except TimeoutError:
-            #catch all the methods that go over the 20m limit
+            try:
+                #catch all the methods that go over the 20m limit
+                total = time.perf_counter() - start
+                print("Method: " + method)
+                print("Problem: " + str(self.name))
+                print(f"Time: {total:.2f}")
+                print(f"Success: Timeout\n")
+                H = nd.Hessian(self.fun)(self.x0)
+                #np arrays needed for calculation
+                bl = np.asarray(self.p.bl, dtype=float)
+                bu = np.asarray(self.p.bu, dtype=float)
+                tol = 1e-8
+                x = self.x0
+                at_lo = np.isfinite(bl) & (x <= bl + tol)
+                at_hi = np.isfinite(bu) & (x >= bu - tol)
+                active = at_lo | at_hi
+                free = ~active
+
+                if np.any(free):
+                    Hff = H[np.ix_(free, free)]
+                    eigenvalue = np.linalg.eigvalsh(Hff).min()
+                else:
+                    eigenvalue = 0.0
+
+                if eigenvalue >= -1e-6:
+                    convex_flag = 1 
+                else:
+                    convex_flag = 0
+            except:
+                return [None, 0.0, None, None]
+            
+            return [0, total, convex_flag, "Timeout"]
+    
+        except ValueError:
+            try:
+                #catch all the methods that go over the 20m limit
+                total = time.perf_counter() - start
+                print("Method: " + method)
+                print("Problem: " + str(self.name))
+                print(f"Time: {total:.2f}")
+                print(f"Success: Timeout\n")
+                H = nd.Hessian(self.fun)(self.x0)
+                #np arrays needed for calculation
+                bl = np.asarray(self.p.bl, dtype=float)
+                bu = np.asarray(self.p.bu, dtype=float)
+                tol = 1e-8
+                x = self.x0
+                at_lo = np.isfinite(bl) & (x <= bl + tol)
+                at_hi = np.isfinite(bu) & (x >= bu - tol)
+                active = at_lo | at_hi
+                free = ~active
+
+                if np.any(free):
+                    Hff = H[np.ix_(free, free)]
+                    eigenvalue = np.linalg.eigvalsh(Hff).min()
+                else:
+                    eigenvalue = 0.0
+
+                if eigenvalue >= -1e-6:
+                    convex_flag = 1 
+                else:
+                    convex_flag = 0
+            except:
+                return [None, 0.0, None, None]
+            
             total = time.perf_counter() - start
             print("Method: " + method)
             print("Problem: " + str(self.name))
             print(f"Time: {total:.2f}")
-            print(f"Success: Timeout\n")
-            traceback.print_exc()
-            return [0, total, None]
+            print(f"Dimension: {self.p.n}")
+            print(f"Success: Nan/Inf\n")
+            return [0, total, convex_flag, "Nan/Inf"]
+        
+        except FloatingPointError:
+            try:
+                #catch all the methods that go over the 20m limit
+                total = time.perf_counter() - start
+                print("Method: " + method)
+                print("Problem: " + str(self.name))
+                print(f"Time: {total:.2f}")
+                print(f"Success: Timeout\n")
+                H = nd.Hessian(self.fun)(self.x0)
+                #np arrays needed for calculation
+                bl = np.asarray(self.p.bl, dtype=float)
+                bu = np.asarray(self.p.bu, dtype=float)
+                tol = 1e-8
+                x = self.x0
+                at_lo = np.isfinite(bl) & (x <= bl + tol)
+                at_hi = np.isfinite(bu) & (x >= bu - tol)
+                active = at_lo | at_hi
+                free = ~active
+
+                if np.any(free):
+                    Hff = H[np.ix_(free, free)]
+                    eigenvalue = np.linalg.eigvalsh(Hff).min()
+                else:
+                    eigenvalue = 0.0
+
+                if eigenvalue >= -1e-6:
+                    convex_flag = 1 
+                else:
+                    convex_flag = 0
+            except:
+                return [None, 0.0, None, None]
+            
+            total = time.perf_counter() - start
+            print("Method: " + method)
+            print("Problem: " + str(self.name))
+            print(f"Time: {total:.2f}")
+            print(f"Dimension: {self.p.n}")
+            print(f"Success: Float Error\n")
+            return [0, total, convex_flag, "Float Error"]
         
         except Exception as e:
             #catch any errors 
+            
+            try:
+                #catch all the methods that go over the 20m limit
+                total = time.perf_counter() - start
+                print("Method: " + method)
+                print("Problem: " + str(self.name))
+                print(f"Time: {total:.2f}")
+                print(f"Success: Timeout\n")
+                H = nd.Hessian(self.fun)(self.x0)
+                #np arrays needed for calculation
+                bl = np.asarray(self.p.bl, dtype=float)
+                bu = np.asarray(self.p.bu, dtype=float)
+                tol = 1e-8
+                x = self.x0
+                at_lo = np.isfinite(bl) & (x <= bl + tol)
+                at_hi = np.isfinite(bu) & (x >= bu - tol)
+                active = at_lo | at_hi
+                free = ~active
+
+                if np.any(free):
+                    Hff = H[np.ix_(free, free)]
+                    eigenvalue = np.linalg.eigvalsh(Hff).min()
+                else:
+                    eigenvalue = 0.0
+
+                if eigenvalue >= -1e-6:
+                    convex_flag = 1 
+                else:
+                    convex_flag = 0
+            except:
+                return [None, 0.0, None, None]
+            
             total = time.perf_counter() - start
             print("Method: " + method)
             print("Problem: " + str(self.name))
             print(f"Time: {total:.2f}")
             print(f"Error: {e}\n")
-            traceback.print_exc()
-            return [0, total, None]
+            return [0, total, convex_flag, "Solver Error"]
     
     
-        
+    #should be done
     def unbounded(self, method):
          #This is a check to make my mac not crash :(
         n = self.p.n
         if n > 3000:
             print(f"Skipping {self.name}: too large for {method} (n={n})\n")
-            return [None, 0.0, None]
+            return [None, 0.0, None, None]
         #start timer so it has full function scope
         start = time.perf_counter()
         
@@ -379,9 +698,9 @@ class solver:
             print(f"Avg Time (successful runs only): {avg_time:.2f}\n")
 
             if num_successes > 0:
-                return [1, avg_time, 0]
+                return [1, avg_time, 0, None]
             else:
-                return [0, avg_time, None]
+                return [0, avg_time, 0, None]
         
         except TimeoutError:
             #catch all the methods that go over the 20m limit
@@ -391,7 +710,25 @@ class solver:
             print(f"Time: {total:.2f}")
             print(f"Dimension: {self.p.n}")
             print(f"Success: Timeout\n")
-            return [0, total, None]
+            return [0, total, 0, "Timeout"]
+        
+        except ValueError:
+            total = time.perf_counter() - start
+            print("Method: " + method)
+            print("Problem: " + str(self.name))
+            print(f"Time: {total:.2f}")
+            print(f"Dimension: {self.p.n}")
+            print(f"Success: Nan/Inf\n")
+            return [0, total, 0, "Nan/Inf"]
+        
+        except FloatingPointError:
+            total = time.perf_counter() - start
+            print("Method: " + method)
+            print("Problem: " + str(self.name))
+            print(f"Time: {total:.2f}")
+            print(f"Dimension: {self.p.n}")
+            print(f"Success: Float Error\n")
+            return [0, total, 0, "Float Error"]
         
         except Exception as e:
             #catch any errors 
@@ -401,11 +738,12 @@ class solver:
             print(f"Time: {total:.2f}")
             print(f"Dimension: {self.p.n}")
             print(f"Error: {e}\n")
-            
-            return [0, total, None]    
+            print("Solver")
+            return [0, total, 0, "Solver Error"]
     
     
 def clearcache():
+    
     cache = os.path.expanduser("~/.pycutest_cache")
     shutil.rmtree(cache, ignore_errors=True)
     os.makedirs(cache, exist_ok=True)

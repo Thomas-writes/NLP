@@ -4,7 +4,7 @@ import numpy as np
 from solvers import solver, clearcache
 
 #methods trust-constr, SLSQP, COBYLA
-def main():
+def type2():
     clearcache()
     
     complex_constraints = pycutest.find_problems(constraints=['linear', 'quadratic', 'adjacency', 'other'])
@@ -34,7 +34,7 @@ def main():
             clearcache()
             Clist.append(a.complex_bounds("COBYLA"))
             counter += 1
-        #only want 3 probs for each run
+        #only want 2 probs for each run
         if counter == 2:
             break
     
@@ -43,19 +43,17 @@ def main():
         counter = 0
         for i in Tlist:
             p = pycutest.import_problem(problemNames[counter])
-            f.write(f"{problemNames[counter]},trust-constr,{i[0]},{i[1]},{i[2]},{p.n},\n")
+            f.write(f"{problemNames[counter]},trust-constr,{i[0]},{i[1]},{i[2]},{p.n},{i[3]}\n")
             counter += 1
                 
         counter = 0
         for i in Slist:
             p = pycutest.import_problem(problemNames[counter])
-            f.write(f"{problemNames[counter]},SLSQP,{i[0]},{i[1]},{i[2]},{p.n},\n")
+            f.write(f"{problemNames[counter]},SLSQP,{i[0]},{i[1]},{i[2]},{p.n},{i[3]}\n")
             counter += 1
             
         counter = 0
         for i in Clist:
             p = pycutest.import_problem(problemNames[counter])
-            f.write(f"{problemNames[counter]},COBYLA,{i[0]},{i[1]},{i[2]},{p.n},\n")
+            f.write(f"{problemNames[counter]},COBYLA,{i[0]},{i[1]},{i[2]},{p.n},{i[3]}\n")
             counter += 1 
-    
-main()

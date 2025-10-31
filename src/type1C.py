@@ -3,7 +3,7 @@ from solvers import solver, clearcache
 
 #methods are L-BFGS-B, TNC, Powell, Nelder-Mead
     
-def main():
+def type1C():
     #dont want times to be affected by previous results
     clearcache()
     
@@ -26,7 +26,7 @@ def main():
     Nlist = []
     
     #problem names keeps track of the problems solved
-    #counter countes to 3 to stop the loop
+    #counter countes to 2 to stop the loop
     problemNames = []
     counter = 0
     for i in simple_constraints:
@@ -50,25 +50,24 @@ def main():
         counter = 0
         for i in Llist:
             p = pycutest.import_problem(problemNames[counter])
-            f.write(f"{problemNames[counter]},L-BFGS-B,{i[0]},{i[1]},{i[2]},{p.n},\n")
+            f.write(f"{problemNames[counter]},L-BFGS-B,{i[0]},{i[1]},{i[2]},{p.n},{i[3]}\n")
             counter += 1
                 
         counter = 0
         for i in Tlist:
             p = pycutest.import_problem(problemNames[counter])
-            f.write(f"{problemNames[counter]},TNC,{i[0]},{i[1]},{i[2]},{p.n},\n")
+            f.write(f"{problemNames[counter]},TNC,{i[0]},{i[1]},{i[2]},{p.n},{i[3]}\n")
             counter += 1
             
         counter = 0
         for i in Plist:
             p = pycutest.import_problem(problemNames[counter])
-            f.write(f"{problemNames[counter]},Powell,{i[0]},{i[1]},{i[2]},{p.n},\n")
+            f.write(f"{problemNames[counter]},Powell,{i[0]},{i[1]},{i[2]},{p.n},{i[3]}\n")
             counter += 1 
         
         counter = 0
         for i in Nlist:
             p = pycutest.import_problem(problemNames[counter])
-            f.write(f"{problemNames[counter]},Nelder-Mead,{i[0]},{i[1]},{i[2]},{p.n},\n")
+            f.write(f"{problemNames[counter]},Nelder-Mead,{i[0]},{i[1]},{i[2]},{p.n},{i[3]}\n")
             counter += 1
     
-main()

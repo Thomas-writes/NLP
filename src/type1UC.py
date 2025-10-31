@@ -4,7 +4,7 @@ from solvers import solver, clearcache
 #methods are CG, BFGS, dogleg, trust-ncg
 
 
-def main():
+def type1UC():
     clearcache()
     
     unconstrained = pycutest.find_problems(constraints='unconstrained')
@@ -26,7 +26,7 @@ def main():
     Tlist = []
     
     #problem names keeps track of the problems solved
-    #counter countes to 3 to stop the loop
+    #counter countes to 2 to stop the loop
     problemNames = []
     counter = 0
     for i in unconstrained:
@@ -50,26 +50,24 @@ def main():
         counter = 0
         for i in Clist:
             p = pycutest.import_problem(problemNames[counter])
-            f.write(f"{problemNames[counter]},CG,{i[0]},{i[1]},{i[2]},{p.n},\n")
+            f.write(f"{problemNames[counter]},CG,{i[0]},{i[1]},{i[2]},{p.n},{i[3]}\n")
             counter += 1
                 
         counter = 0
         for i in Blist:
             p = pycutest.import_problem(problemNames[counter])
-            f.write(f"{problemNames[counter]},BFGS,{i[0]},{i[1]},{i[2]},{p.n},\n")
+            f.write(f"{problemNames[counter]},BFGS,{i[0]},{i[1]},{i[2]},{p.n},{i[3]}\n")
             counter += 1
             
         counter = 0
         for i in Dlist:
             p = pycutest.import_problem(problemNames[counter])
-            f.write(f"{problemNames[counter]},dogleg,{i[0]},{i[1]},{i[2]},{p.n},\n")
+            f.write(f"{problemNames[counter]},dogleg,{i[0]},{i[1]},{i[2]},{p.n},{i[3]}\n")
             counter += 1 
         
         counter = 0
         for i in Tlist:
             p = pycutest.import_problem(problemNames[counter])
-            f.write(f"{problemNames[counter]},trust-ncg,{i[0]},{i[1]},{i[2]},{p.n},\n")
+            f.write(f"{problemNames[counter]},trust-ncg,{i[0]},{i[1]},{i[2]},{p.n},{i[3]}\n")
             counter += 1
     
-    
-main()
