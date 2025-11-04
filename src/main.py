@@ -5,5 +5,4 @@ from type2 import type2
 
 def main():
     graph()
-    
 main()

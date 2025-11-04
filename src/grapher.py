@@ -70,12 +70,12 @@ def graph():
     with open("./checkpointfiles/type2constraints.csv") as f:
         for line in f:
             line = line.strip().split(",")
-            if line[1] == "trust-constr" and line[2].lower() != "none":
+            if line[1] == "trust-constr" and line[4].lower() != "none":
                 TClist.append(cleaner(line))
-            elif line[1] == "SLSQP" and line[2].lower() != "none":
+            elif line[1] == "SLSQP" and line[4].lower() != "none":
                 print(line[2].lower())
                 SQlist.append(cleaner(line))
-            elif line[1] == "COBYLA" and line[2].lower() != "none":
+            elif line[1] == "COBYLA" and line[4].lower() != "none":
                 COlist.append(cleaner(line))
         
     
@@ -116,7 +116,6 @@ def graph():
         while i < len(time):
             if convexity[i] == 1 and success[i] == 1:
                 convexTime.append(time[i])
-                
             elif convexity[i] == 0 and success[i] == 1:
                 nonconvexTime.append(time[i])
             elif convexity[i] == 1 and success[i] == 0:
@@ -236,8 +235,8 @@ def graph():
         #set the bar groups for each type of result
         bars1 = plt.bar(x - width, convex_avgs, width=width, label="Convex")
         bars2 = plt.bar(x, nonconvex_avgs, width=width, label="Nonconvex")
-        bars3 = plt.bar(x + width/2 - width/4, c_fail_avg, width=width/2, label="CFails")
-        bars4 = plt.bar(x + width/2 + width/4, nc_fail_avg, width=width/2, label="NCFails")
+        bars3 = plt.bar(x + width/2 + width/4, c_fail_avg, width=width/2, label="Convex Fails")
+        bars4 = plt.bar(x + width + width/4, nc_fail_avg, width=width/2, label="Nonconvex Fails")
 
         plt.xticks(x, methods)
         plt.yscale("log")

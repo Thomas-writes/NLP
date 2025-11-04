@@ -743,7 +743,6 @@ class solver:
     
     
 def clearcache():
-    
     cache = os.path.expanduser("~/.pycutest_cache")
     shutil.rmtree(cache, ignore_errors=True)
     os.makedirs(cache, exist_ok=True)
