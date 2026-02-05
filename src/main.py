@@ -4,5 +4,9 @@ from type1UC import type1UC
 from type2 import type2
 
 def main():
+    
+    type1C()
+    
     graph()
+
 main()

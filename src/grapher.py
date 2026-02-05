@@ -73,7 +73,6 @@ def graph():
             if line[1] == "trust-constr" and line[4].lower() != "none":
                 TClist.append(cleaner(line))
             elif line[1] == "SLSQP" and line[4].lower() != "none":
-                print(line[2].lower())
                 SQlist.append(cleaner(line))
             elif line[1] == "COBYLA" and line[4].lower() != "none":
                 COlist.append(cleaner(line))
