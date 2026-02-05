@@ -1,4 +1,4 @@
-# SIM2BQP
+# GOULDQP1
 
 ## Reproducibility
 - **pycutest version:** 1.8.0
@@ -11,11 +11,11 @@
 - **Last Updated:** 2026-02-05
 
 ## Classification
-- **Convexity:** Convex
+- **Convexity:** Nonconvex
 - **Degree:** Quadratic
-- **# of Variables (n):** 1
-- **# of Constraints (m):** 0
-- **Bounds type: Type 1UC** 
+- **# of Variables (n):** 32
+- **# of Constraints (m):** 17
+- **Bounds type: Type 1** 
 ## Runs
 | method | success | start | f | time | iters | messages |
 |:------|:--------:|:------|------:|------:|------:|:------|

@@ -1,4 +1,4 @@
-# SIM2BQP
+# DIAGIQB
 
 ## Reproducibility
 - **pycutest version:** 1.8.0
@@ -11,9 +11,9 @@
 - **Last Updated:** 2026-02-05
 
 ## Classification
-- **Convexity:** Convex
+- **Convexity:** Nonconvex
 - **Degree:** Quadratic
-- **# of Variables (n):** 1
+- **# of Variables (n):** 10
 - **# of Constraints (m):** 0
 - **Bounds type: Type 1UC** 
 ## Runs

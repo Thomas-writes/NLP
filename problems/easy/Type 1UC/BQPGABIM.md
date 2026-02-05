@@ -8,7 +8,7 @@
 
 ## General Info
 - **Notes:** 
-- **Last Updated:** 2026-02-04
+- **Last Updated:** 2026-02-05
 
 ## Classification
 - **Convexity:** Convex
@@ -16,3 +16,6 @@
 - **# of Variables (n):** 46
 - **# of Constraints (m):** 0
 - **Bounds type: Type 1UC** 
+## Runs
+| method | success | start | f | time | iters | messages |
+|:------|:--------:|:------|------:|------:|------:|:------|

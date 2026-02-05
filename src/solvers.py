@@ -66,6 +66,11 @@ class solver:
             print(f"Problem: {self.name}")
 
             run_id = 1
+            objvalue = []
+            times = []
+            successes = []
+            iterations = []
+            messages = []
             for x0_try in starts:
                 #start the timer again so it is more accurate
                 start = time.perf_counter()
@@ -83,10 +88,23 @@ class solver:
                 #timer doesnt start at 0 so subtract it out
                 total = time.perf_counter() - start
                 print(f"Starting point: {x0_try}")
-                print(f"Time: {total:.2f}")
+                print(f"Time: {total}")
                 print(f"Success: {res.success}")
                 print(f"Message: {res.message}")
+                objvalue.append(res.fun)
+                times.append(total)
+                if res.success:
+                    successes.append("success")
+                else:
+                    successes.append("fail")
+                iterations.append(res.nit)
+                messages.append(res.message)
                 
+                
+            return [successes, starts, objvalue, times, iterations, messages]
+            
+        except:
+                '''
                 #get the hessian of the objective function at the resulting point
                 H = self.p.hess(res.x) 
 
@@ -365,7 +383,7 @@ class solver:
             return [0, total, convex_flag, "Solver Error"]
         
         
-    
+    '''
     def complex_bounds(self, method):
         n = self.p.n
         if n > 3000:

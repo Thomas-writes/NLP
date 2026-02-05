@@ -4,6 +4,8 @@ import pycutest
 import numpy as np
 from datetime import date
 from pathlib import Path
+from solvers import solver
+import time
 
 #positive semidefinite - aka convexity x^T(H)x >= 0
 def psd_check(H):
@@ -16,7 +18,7 @@ def psd_check(H):
 
 def md_writer(filter, problem_name, convexity, degree):
     p = pycutest.import_problem(problem_name)
-    counter =0
+    counter = 0
     if p.is_eq_cons is not None:
         print(p.is_eq_cons)
         for i in p.is_eq_cons:
@@ -55,10 +57,49 @@ def md_writer(filter, problem_name, convexity, degree):
         f.write(f"- **# of Constraints (m):** {p.m}\n")
         f.write(f"- **Bounds type: {bounds}** \n")
 
+        f.write("## Runs\n")
+        f.write("| method | success | start | f | time | iters | messages |\n")
+        #: is for align left right or center
+        f.write("|:------|:--------:|:------|------:|------:|------:|:------|\n")
+        
+def append_solves(method, bounds, filter):
+    base_dir = Path("./problems")
+    filter_dir = base_dir / filter
+    problem_names = []
+    
+    dir = filter_dir / bounds
+        
+    for md_file in dir.glob("*.md"):
+        problem_name = md_file.stem
+        problem_names.append(problem_name)
+
+    if bounds == "Type 1":
+        for i in problem_names:
+            a = solver(i)
+            successes, start_vals, objvals, times, iters, messages = a.simple_bounds(method)
+            counter = 0
+            with open(f"./problems/{filter}/{bounds}/{i}.md", "a") as f:
+                while counter < len(successes):
+                    start_vals[counter] = np.array2string(start_vals[counter], max_line_width=10**9)
+                    f.write(f"| {method} | {successes[counter]} | {start_vals[counter]} | {objvals[counter]} | {times[counter]} | {iters[counter]} | {messages[counter]} |\n")
+                    counter += 1
+    
+    if bounds == "Type 1UC":
+        for i in problem_names:
+            a = solver(i)
+            successes, start_vals, objvals, times, iters, messages = a.unbounded(method)
+            counter = 0
+            with open(f"./problems/{filter}/{bounds}/{i}.md", "a") as f:
+                while counter < len(successes):
+                    start_vals[counter] = np.array2string(start_vals[counter], max_line_width=10**9)
+                    f.write(f"| {method} | {successes[counter]} | {start_vals[counter]} | {objvals[counter]} | {times[counter]} | {iters[counter]} | {messages[counter]} |\n")
+                    counter += 1
+
+    
         
 
 #this filter should be working
-def easy_filter():
+def easy_med_filter():
     #this should filter quadratic objective functions
     small_convex = pycutest.find_problems(objective="quadratic", constraints="unconstrained bound linear")
     
@@ -74,24 +115,8 @@ def easy_filter():
             H = .5*(H + H.T)
             if psd_check(H) == "convex":
                 md_writer("easy", problem, "Convex", "Quadratic")
-
-            
-def medium_filter():
-    #quadratic objective and quadratic bounds
-    #this then could have minimas on the border if a bound is parabolic
-    smallq_nonconvex = pycutest.find_problems(objective="quadratic", constraints=["nonlinear"], n=[1,100000])
-    filtered = []
-    print(smallq_nonconvex)
-    '''
-    for problem in smallq_nonconvex:
-        p = pycutest.import_problem(problem)
-        x0 = p.x0
-        H = p.ihess(x0)
-        #symmetrize for correctness - thinking about 2nd derivatives this is logical
-        H = .5*(H + H.T)
-        if psd_check(H) == "nonconvex":
-            filtered.append(problem)
-    '''
+            else:
+                md_writer("medium", problem, "Nonconvex", "Quadratic")
             
 def hard_filter():
     #any objective and any bounds
@@ -103,6 +128,10 @@ def hard_filter():
 
 
 def main():
-    easy_filter()
+    easy_med_filter()
+    append_solves("L-BFGS-B", "Type 1", "easy")
+    append_solves("TNC", "Type 1", "easy")
+    append_solves("Powell", "Type 1", "easy")
+    append_solves("Nelder-Mead", "Type 1", "easy")
     
 main()
