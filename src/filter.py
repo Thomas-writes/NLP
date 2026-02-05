@@ -117,21 +117,23 @@ def easy_med_filter():
                 md_writer("easy", problem, "Convex", "Quadratic")
             else:
                 md_writer("medium", problem, "Nonconvex", "Quadratic")
-            
-def hard_filter():
-    #any objective and any bounds
-    #filter for nonconvex using PSD
-    small_nonconvex = pycutest.find_problems(constraints=["bounds", "linear", "nonlinear"], n=[1,20])
-    filtered = []
-    print(small_nonconvex)
 
 
 
 def main():
+    '''
     easy_med_filter()
     append_solves("L-BFGS-B", "Type 1", "easy")
     append_solves("TNC", "Type 1", "easy")
     append_solves("Powell", "Type 1", "easy")
     append_solves("Nelder-Mead", "Type 1", "easy")
+    '''
+    
+    append_solves("CG", "Type 1UC", "easy")
+    append_solves("BFGS", "Type 1UC", "easy")
+    append_solves("dogleg", "Type 1UC", "easy")
+    append_solves("trust-ncg", "Type 1UC", "easy")
+    
+    
     
 main()

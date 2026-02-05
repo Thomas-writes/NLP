@@ -463,7 +463,7 @@ class solver:
                         Hff = H[np.ix_(free, free)]
                         eigenvalue = np.linalg.eigvalsh(Hff).min()
                     else:
-                        eigenvalue = 0.0
+                        eigenvalue = 0
 
                     if eigenvalue >= -1e-6:
                         convex_flag = 1 
@@ -683,6 +683,12 @@ class solver:
             print("Problem: " + str(self.name))
             print(f"Dimension: {self.p.n}")
             
+            objvalue = []
+            times = []
+            successes = []
+            iterations = []
+            messages = []
+            
             for x0 in starts:
                 start = time.perf_counter()
                 print(f"\nRun {run_id}")
@@ -702,11 +708,29 @@ class solver:
                 print(f"Success: {res.success}")
                 print(f"Message: {res.message}")
                 
+                '''
                 if res.success:
                     all_success.append(1)
                     success_times.append(total)
                 else:
                     all_success.append(0)
+                '''
+                
+                objvalue.append(res.fun)
+                times.append(total)
+                if res.success:
+                    successes.append("success")
+                else:
+                    successes.append("fail")
+                iterations.append(res.nit)
+                messages.append(res.message)
+                
+            return [successes, starts, objvalue, times, iterations, messages]
+
+    
+        except: 
+            print()
+        """
             
             num_successes = sum(all_success)
             avg_success = num_successes / len(starts) if starts else 0.0
@@ -719,6 +743,8 @@ class solver:
                 return [1, avg_time, 0, None]
             else:
                 return [0, avg_time, 0, None]
+        
+        
         
         except TimeoutError:
             #catch all the methods that go over the 20m limit
@@ -759,6 +785,7 @@ class solver:
             print("Solver")
             return [0, total, 0, "Solver Error"]
     
+        """
     
 def clearcache():
     cache = os.path.expanduser("~/.pycutest_cache")
