@@ -8,7 +8,7 @@
 
 ## General Info
 - **Notes:** 
-- **Last Updated:** 2026-02-05
+- **Last Updated:** 2026-02-12
 
 ## Classification
 - **Convexity:** Convex
@@ -16,18 +16,39 @@
 - **# of Variables (n):** 8
 - **# of Constraints (m):** 0
 - **Bounds type: Type 1UC** 
+
 ## Runs
 | method | success | start | f | time | iters | messages |
 |:------|:--------:|:------|------:|------:|------:|:------|
-| CG | fail | [-4.10447745e+19 -9.60840689e+19 -8.48614136e+19 -1.85448174e+19 -4.95656330e+19  5.68010369e+19 -8.27111288e+19  1.96728782e+18] | 2.142380302562604e+45 | 0.00035116702201776206 | 0 | Desired error not necessarily achieved due to precision loss. |
-| CG | fail | [-2.11888183e+18  8.35377078e+19  3.85119007e+19 -1.26218638e+19  6.75363761e+18 -3.65517900e+19  4.74076542e+19 -4.50411183e+19] | 3.51244462761884e+45 | 0.00010041697532869875 | 0 | Desired error not necessarily achieved due to precision loss. |
-| CG | fail | [ 6.23429205e+19  4.10128654e+19  2.44817024e+19  5.85307873e+19  3.39316031e+19 -3.07290578e+19  2.98619050e+19  6.27726725e+19] | 1.8393362075067916e+46 | 6.0375023167580366e-05 | 0 | Desired error not necessarily achieved due to precision loss. |
-| BFGS | fail | [ 7.62435327e+19 -2.88038938e+19 -6.11330254e+19 -1.12499651e+19 -9.50902164e+19  8.99927903e+19 -1.23316684e+19 -6.52844514e+19] | 1.3732423594509258e+46 | 5.599998985417187e-05 | 0 | Desired error not necessarily achieved due to precision loss. |
-| BFGS | fail | [ 3.95815391e+19 -5.73517675e+18 -5.56284120e+19  3.82628890e+19  5.14405190e+19  4.92810527e+19 -7.96335102e+19  5.25020725e+19] | 3.712211058489064e+45 | 4.90829988848418e-05 | 0 | Desired error not necessarily achieved due to precision loss. |
-| BFGS | fail | [-8.41862812e+19  6.84818283e+19  4.47237273e+19  5.87880928e+19 -2.94154415e+19  1.62848270e+19 -5.47573971e+19  8.18174544e+18] | 3.396081639197519e+44 | 4.591699689626694e-05 | 0 | Desired error not necessarily achieved due to precision loss. |
-| dogleg | fail | [-2.46184191e+19 -8.93048941e+19  3.10910094e+19  7.44747361e+19  7.82902327e+19 -8.70604564e+19 -7.11304178e+19  7.74061136e+19] | 6.807357826744992e+45 | 9.645899990573525e-05 | 0 | A bad approximation caused failure to predict improvement. |
-| dogleg | fail | [ 8.31580916e+19  1.86448859e+19  6.90956517e+19 -9.37904735e+19  2.49111742e+19 -9.69908305e+19  5.93983994e+19 -5.32534768e+19] | 6.856169990629317e+45 | 6.929200026206672e-05 | 0 | A bad approximation caused failure to predict improvement. |
-| dogleg | fail | [ 5.14222873e+19  6.68058351e+19  6.28801660e+18 -8.07240099e+19  7.85405511e+19  3.42476741e+19  5.29412507e+17 -3.31920053e+19] | 2.2438260982455056e+45 | 6.433299859054387e-05 | 0 | A bad approximation caused failure to predict improvement. |
-| trust-ncg | fail | [-9.94417685e+18  4.48605228e+19  3.42817042e+19  2.58296240e+19 -1.00454645e+19 -8.16964606e+19  8.12248857e+18 -3.24695968e+19] | 5.6648270155563424e+45 | 0.00011908300803042948 | 0 | A bad approximation caused failure to predict improvement. |
-| trust-ncg | fail | [-6.71109024e+19 -7.38936145e+19  4.76596888e+19  9.33176804e+19  9.04371258e+19 -9.55447793e+19  8.74906430e+19 -1.90647963e+19] | 1.7057435077767975e+44 | 9.304200648330152e-05 | 0 | A bad approximation caused failure to predict improvement. |
-| trust-ncg | fail | [ 4.53291907e+19 -1.00887646e+19  7.79235901e+19  4.34585822e+19  2.01141243e+19 -1.58059660e+18 -5.18867298e+19 -5.64035158e+19] | 1.866788991986833e+46 | 6.0874997870996594e-05 | 0 | A bad approximation caused failure to predict improvement. |
+| CG | fail | [0.915 0.841 1.03 1.15 0.99 1.05 1.01 0.916] | 0.0196 | 0.0677 | 1600 | Maximum number of iterations has been exceeded. |
+| CG | fail | [1.11 0.87 1.03 0.972 1.08 1.01 0.882 1.16] | 0.16 | 0.0633 | 1600 | Maximum number of iterations has been exceeded. |
+| CG | fail | [0.843 0.974 1.13 1.01 0.877 1.16 1.08 0.999] | 0.0204 | 0.0599 | 1600 | Maximum number of iterations has been exceeded. |
+| BFGS | success | [1.07 1.09 0.977 0.903 1.06 0.922 0.947 0.9] | 0.0195 | 0.00148 | 49 | Optimization terminated successfully. |
+| BFGS | success | [1.09 0.986 1.13 1 1.05 0.975 1.16 1.01] | 0.0195 | 0.00151 | 49 | Optimization terminated successfully. |
+| BFGS | success | [1.03 0.838 1.03 1.12 1.01 1.05 1 1.19] | 0.0195 | 0.00162 | 49 | Optimization terminated successfully. |
+| dogleg | success | [0.934 1.03 1.09 1.06 0.82 0.987 0.88 0.922] | 0.0195 | 0.000385 | 7 | Optimization terminated successfully. |
+| dogleg | success | [0.968 0.974 1.01 0.957 0.992 1.16 0.968 1.12] | 0.0195 | 0.000369 | 7 | Optimization terminated successfully. |
+| dogleg | success | [1.04 0.862 0.935 1.02 1.02 0.899 1.09 1.01] | 0.0195 | 0.00052 | 7 | Optimization terminated successfully. |
+| trust-ncg | fail | [0.974 1.15 0.937 1.13 0.976 0.94 1.04 0.849] | 2.27e+03 | 0.000856 | 34 | A bad approximation caused failure to predict improvement. |
+| trust-ncg | fail | [1.13 0.806 1.02 1.22 0.988 0.815 1.06 1.01] | 1.86e+03 | 0.000203 | 5 | A bad approximation caused failure to predict improvement. |
+| trust-ncg | fail | [0.956 1.05 0.942 0.878 1.01 0.98 1.08 0.847] | 2.52e+03 | 0.000189 | 5 | A bad approximation caused failure to predict improvement. |
+
+## Best-known results (by metric)
+
+### Fastest successful (time)
+- Method: trust-ncg
+- Time: 0.000189 s
+- Iterations: 5
+- Objective: 2.52e+03
+
+### Least Iterations (iter)
+- Method: trust-ncg
+- Time: 0.000203 s
+- Iterations: 5
+- Objective: 1.86e+03
+
+### Best Objective (f)
+- Method: BFGS
+- Time: 0.00148 s
+- Iterations: 49
+- Objective: 0.0195

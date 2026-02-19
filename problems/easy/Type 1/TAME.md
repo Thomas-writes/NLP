@@ -8,7 +8,7 @@
 
 ## General Info
 - **Notes:** 
-- **Last Updated:** 2026-02-05
+- **Last Updated:** 2026-02-12
 
 ## Classification
 - **Convexity:** Convex
@@ -16,18 +16,39 @@
 - **# of Variables (n):** 2
 - **# of Constraints (m):** 1
 - **Bounds type: Type 1** 
+
 ## Runs
 | method | success | start | f | time | iters | messages |
 |:------|:--------:|:------|------:|------:|------:|:------|
-| L-BFGS-B | success | [9.32961575e+19 7.52241958e+19] | 0.0 | 0.00022774998797103763 | 1 | CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL |
-| L-BFGS-B | success | [6.76180267e+19 1.05179751e+19] | 0.0 | 9.279098594561219e-05 | 1 | CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL |
-| L-BFGS-B | success | [4.53166678e+19 8.69489201e+19] | 0.0 | 0.00010516599286347628 | 2 | CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL |
-| TNC | fail | [2.40161953e+19 5.99502676e+19] | 67108864.0 | 0.00010316699626855552 | 1 | Linear search failed |
-| TNC | fail | [3.79322724e+19 4.79532844e+19] | 67108864.0 | 9.270801092498004e-05 | 1 | Linear search failed |
-| TNC | success | [9.24601567e+19 2.74784777e+19] | 0.0 | 9.291697642765939e-05 | 2 | Converged (|x_n-x_(n-1)| ~= 0) |
-| Powell | success | [2.78423846e+19 7.99877512e+19] | 0.0 | 0.0006524159980472177 | 2 | Optimization terminated successfully. |
-| Powell | success | [1.28418536e+19 5.91892868e+19] | 0.0 | 0.0010586249991320074 | 3 | Optimization terminated successfully. |
-| Powell | success | [5.91549875e+19 6.04750435e+19] | 0.0 | 0.0005900409887544811 | 2 | Optimization terminated successfully. |
-| Nelder-Mead | success | [5.12253104e+19 5.00865489e+19] | 0.0 | 0.0016909580153878778 | 119 | Optimization terminated successfully. |
-| Nelder-Mead | success | [4.04287538e+19 2.34796230e+19] | 0.0 | 0.0016818339936435223 | 122 | Optimization terminated successfully. |
-| Nelder-Mead | success | [8.24712869e+19 6.16903256e+18] | 0.0 | 0.001964791998034343 | 129 | Optimization terminated successfully. |
+| L-BFGS-B | success | [0.15225852 0.03232153] | 7.703719777548943e-34 | 0.00011479199747554958 | 1 | CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL |
+| L-BFGS-B | success | [0.00393176 0.        ] | 1.88079096131566e-37 | 9.19159792829305e-05 | 1 | CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL |
+| L-BFGS-B | success | [0.         0.01900097] | 0.0 | 8.991599315777421e-05 | 1 | CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL |
+| TNC | success | [0.20429271 0.18546149] | 0.0 | 0.00012675000471062958 | 1 | Converged (|x_n-x_(n-1)| ~= 0) |
+| TNC | success | [0.         0.04887723] | 0.0 | 8.891598554328084e-05 | 1 | Converged (|x_n-x_(n-1)| ~= 0) |
+| TNC | success | [0.00214841 0.20621906] | 0.0 | 8.062500273808837e-05 | 1 | Converged (|x_n-x_(n-1)| ~= 0) |
+| Powell | success | [0.         0.09212206] | 0.0 | 0.0019833339902106673 | 2 | Optimization terminated successfully. |
+| Powell | success | [0.04000717 0.07431267] | 0.0 | 0.0019638329977169633 | 2 | Optimization terminated successfully. |
+| Powell | success | [0.         0.13223096] | 0.0 | 0.002087834000121802 | 2 | Optimization terminated successfully. |
+| Nelder-Mead | success | [0.14876638 0.        ] | 0.0 | 0.00022945800446905196 | 12 | Optimization terminated successfully. |
+| Nelder-Mead | success | [0.06227598 0.        ] | 0.0 | 0.00019887497182935476 | 12 | Optimization terminated successfully. |
+| Nelder-Mead | success | [0.        0.0260367] | 6.554278149733112e-10 | 0.0002516249951440841 | 16 | Optimization terminated successfully. |
+
+## Best-known results (by metric)
+
+### Fastest successful (time)
+- Method: TNC
+- Time: 8.06e-05 s
+- Iterations: 1
+- Objective: 0
+
+### Least Iterations (iter)
+- Method: L-BFGS-B
+- Time: 0.000115 s
+- Iterations: 1
+- Objective: 7.7e-34
+
+### Best Objective (f)
+- Method: L-BFGS-B
+- Time: 8.99e-05 s
+- Iterations: 1
+- Objective: 0
