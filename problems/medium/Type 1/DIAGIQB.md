@@ -1,4 +1,4 @@
-# GOULDQP1
+# DIAGIQB
 
 ## Reproducibility
 - **pycutest version:** 1.8.0
@@ -8,13 +8,13 @@
 
 ## General Info
 - **Notes:** 
-- **Last Updated:** 2026-02-12
+- **Last Updated:** 2026-02-19
 
 ## Classification
 - **Convexity:** Nonconvex
 - **Degree:** Quadratic
-- **# of Variables (n):** 32
-- **# of Constraints (m):** 17
+- **# of Variables (n):** 10
+- **# of Constraints (m):** 0
 - **Bounds type: Type 1** 
 
 ## Runs

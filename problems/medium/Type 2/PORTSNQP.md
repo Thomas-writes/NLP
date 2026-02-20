@@ -8,14 +8,14 @@
 
 ## General Info
 - **Notes:** 
-- **Last Updated:** 2026-02-12
+- **Last Updated:** 2026-02-19
 
 ## Classification
 - **Convexity:** Nonconvex
 - **Degree:** Quadratic
 - **# of Variables (n):** 10
 - **# of Constraints (m):** 2
-- **Bounds type: Type 1** 
+- **Bounds type: Type 2** 
 
 ## Runs
 | method | success | start | f | time | iters | messages |

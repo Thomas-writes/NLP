@@ -8,7 +8,7 @@
 
 ## General Info
 - **Notes:** 
-- **Last Updated:** 2026-02-12
+- **Last Updated:** 2026-02-19
 
 ## Classification
 - **Convexity:** Convex
@@ -20,35 +20,35 @@
 ## Runs
 | method | success | start | f | time | iters | messages |
 |:------|:--------:|:------|------:|------:|------:|:------|
-| CG | fail | [0.89 0.846 1 0.929 0.786 1.03 1.02 1.06] | 5.24 | 0.0717 | 1600 | Maximum number of iterations has been exceeded. |
-| CG | fail | [1.05 1.03 1.07 0.987 1.22 0.767 1.07 0.833] | 4.95 | 0.0674 | 1600 | Maximum number of iterations has been exceeded. |
-| CG | fail | [0.937 0.991 1.03 1.09 0.994 0.878 1.14 0.961] | 5.91 | 0.078 | 1600 | Maximum number of iterations has been exceeded. |
-| BFGS | success | [1.02 1.1 0.871 0.995 1.05 0.897 1.1 1.03] | 0.0976 | 0.00118 | 37 | Optimization terminated successfully. |
-| BFGS | success | [0.941 1.18 1.09 0.98 0.933 1 0.976 0.95] | 0.0976 | 0.00111 | 37 | Optimization terminated successfully. |
-| BFGS | success | [0.911 0.91 0.93 1.16 0.995 0.877 1.09 1.08] | 0.0976 | 0.00111 | 37 | Optimization terminated successfully. |
-| dogleg | success | [0.861 1.07 0.904 1.01 1.06 1.02 1.15 0.904] | 0.0976 | 0.00052 | 9 | Optimization terminated successfully. |
-| dogleg | success | [1.05 1.17 1.12 0.763 1.06 0.918 1.13 1.02] | 0.0976 | 0.00049 | 9 | Optimization terminated successfully. |
-| dogleg | success | [1.04 0.978 1.05 1.12 0.999 1.14 1.06 1.08] | 0.0976 | 0.000481 | 9 | Optimization terminated successfully. |
-| trust-ncg | fail | [0.964 0.838 1.08 1.01 1.05 1.04 0.971 0.98] | 1.67e+05 | 0.000861 | 32 | A bad approximation caused failure to predict improvement. |
-| trust-ncg | fail | [1.16 1.07 0.887 1 1.05 1.21 0.929 0.926] | 1.82e+05 | 0.000942 | 32 | A bad approximation caused failure to predict improvement. |
-| trust-ncg | fail | [1.19 0.955 1.01 0.886 1.07 1.17 1.18 1.01] | 2.14e+05 | 0.000247 | 7 | A bad approximation caused failure to predict improvement. |
+| CG | fail | [1.05 1.1 1.04 0.895 0.871 1.18 1.09 1.11] | 2.34 | 0.0713 | 1600 | Maximum number of iterations has been exceeded. |
+| CG | fail | [1.06 0.973 0.987 0.827 1.18 1.03 1.05 1] | 4.37 | 0.0729 | 1600 | Maximum number of iterations has been exceeded. |
+| CG | fail | [0.991 1.06 0.878 1.15 1.02 0.945 0.895 0.945] | 5 | 0.0757 | 1600 | Maximum number of iterations has been exceeded. |
+| BFGS | success | [0.989 0.906 0.965 1.04 1.16 1.08 1.03 0.901] | 0.0976 | 0.00112 | 37 | Optimization terminated successfully. |
+| BFGS | success | [0.913 1.07 1.14 1 0.876 0.931 0.937 0.969] | 0.0976 | 0.00111 | 37 | Optimization terminated successfully. |
+| BFGS | success | [1.25 0.915 0.825 0.964 1.16 1.05 0.971 1.03] | 0.0976 | 0.0013 | 37 | Optimization terminated successfully. |
+| dogleg | success | [1.01 1.04 1.05 0.96 1.08 1.01 0.989 0.957] | 0.0976 | 0.000506 | 9 | Optimization terminated successfully. |
+| dogleg | success | [1 0.98 1.09 1.04 1.01 0.998 1.01 1] | 0.0976 | 0.000485 | 9 | Optimization terminated successfully. |
+| dogleg | success | [1.13 0.993 1.06 0.984 0.99 0.899 0.882 1.11] | 0.0976 | 0.000479 | 9 | Optimization terminated successfully. |
+| trust-ncg | fail | [0.971 0.989 0.924 0.92 1.03 1.06 0.954 1.03] | 1.6e+05 | 0.000913 | 33 | A bad approximation caused failure to predict improvement. |
+| trust-ncg | fail | [1.09 1.07 0.913 1.03 0.99 1 1.03 0.878] | 1.76e+05 | 0.000219 | 6 | A bad approximation caused failure to predict improvement. |
+| trust-ncg | fail | [1.07 1.03 1.25 0.928 1.11 1.18 1.17 1.11] | 2.13e+05 | 0.00025 | 7 | A bad approximation caused failure to predict improvement. |
 
 ## Best-known results (by metric)
 
 ### Fastest successful (time)
 - Method: trust-ncg
-- Time: 0.000247 s
-- Iterations: 7
-- Objective: 2.14e+05
+- Time: 0.000219 s
+- Iterations: 6
+- Objective: 1.76e+05
 
 ### Least Iterations (iter)
 - Method: trust-ncg
-- Time: 0.000247 s
-- Iterations: 7
-- Objective: 2.14e+05
+- Time: 0.000219 s
+- Iterations: 6
+- Objective: 1.76e+05
 
 ### Best Objective (f)
 - Method: BFGS
-- Time: 0.00118 s
+- Time: 0.00112 s
 - Iterations: 37
 - Objective: 0.0976

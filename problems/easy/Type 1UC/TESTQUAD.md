@@ -8,7 +8,7 @@
 
 ## General Info
 - **Notes:** 
-- **Last Updated:** 2026-02-12
+- **Last Updated:** 2026-02-19
 
 ## Classification
 - **Convexity:** Convex
@@ -20,35 +20,35 @@
 ## Runs
 | method | success | start | f | time | iters | messages |
 |:------|:--------:|:------|------:|------:|------:|:------|
-| CG | success | [1.14 0.864 0.94 0.986 0.954 0.971 0.956 1.07 1.15 1.15] | 5.61e-12 | 0.00653 | 178 | Optimization terminated successfully. |
-| CG | success | [0.878 1.11 1 0.995 1.09 1.04 0.94 0.851 1.07 1.08] | 1.14e-12 | 0.00747 | 229 | Optimization terminated successfully. |
-| CG | success | [0.926 1.05 0.96 0.928 0.974 0.912 0.953 1.05 0.956 0.969] | 4.78e-12 | 0.00887 | 275 | Optimization terminated successfully. |
-| BFGS | success | [1.05 1.07 0.957 1.06 0.988 0.989 0.957 0.885 0.895 1.12] | 3.12e-18 | 0.00074 | 14 | Optimization terminated successfully. |
-| BFGS | success | [1.03 1.09 0.945 1.2 0.811 0.853 1.14 0.971 1.04 0.967] | 4.87e-21 | 0.000715 | 15 | Optimization terminated successfully. |
-| BFGS | success | [1.02 0.948 1.03 1.05 1.07 1 0.972 1.17 0.983 1.12] | 5.34e-20 | 0.000674 | 14 | Optimization terminated successfully. |
-| dogleg | success | [1.01 1.01 1.15 1.05 0.986 0.824 1.06 1.07 0.962 0.94] | 3.25e-28 | 0.000191 | 3 | Optimization terminated successfully. |
-| dogleg | success | [0.888 1.18 0.704 0.906 0.873 1.06 0.952 0.86 1.02 0.994] | 3.21e-29 | 0.000167 | 3 | Optimization terminated successfully. |
-| dogleg | success | [0.982 1.12 0.994 1.02 1.13 1.04 1.02 0.929 0.975 1] | 2.73e-28 | 0.000165 | 3 | Optimization terminated successfully. |
-| trust-ncg | fail | [0.978 1.04 0.967 0.999 1.08 1.05 0.983 1.06 1.14 1.04] | 6.08 | 0.0469 | 2000 | Maximum number of iterations has been exceeded. |
-| trust-ncg | fail | [1.06 1.06 1.09 0.897 0.933 0.976 1.19 1.06 0.951 1.09] | 6.62 | 0.0469 | 2000 | Maximum number of iterations has been exceeded. |
-| trust-ncg | fail | [0.982 0.839 1.1 1.03 0.924 0.839 1.19 0.939 1.01 1.01] | 4.46 | 0.0465 | 2000 | Maximum number of iterations has been exceeded. |
+| CG | success | [0.945 1.11 0.928 1.1 0.949 0.92 0.97 1.08 0.92 0.949] | 3.85e-12 | 0.00925 | 264 | Optimization terminated successfully. |
+| CG | success | [0.843 1.04 1.13 0.898 0.932 0.798 0.97 0.984 1.03 0.979] | 7.48e-23 | 0.00202 | 52 | Optimization terminated successfully. |
+| CG | success | [0.973 0.964 0.784 1.2 1.01 1.09 0.822 0.928 1.02 1.07] | 6.65e-11 | 0.0118 | 364 | Optimization terminated successfully. |
+| BFGS | success | [1.02 1.05 1.03 1.06 0.762 1.09 0.754 1.14 0.973 0.932] | 3.96e-23 | 0.000794 | 15 | Optimization terminated successfully. |
+| BFGS | success | [0.896 0.928 1 1.05 0.939 1.1 1.23 0.882 0.982 0.98] | 6.3e-18 | 0.000716 | 13 | Optimization terminated successfully. |
+| BFGS | success | [1.07 0.875 1.11 0.998 1.04 0.874 0.898 1.1 1.25 0.953] | 6.37e-18 | 0.000828 | 14 | Optimization terminated successfully. |
+| dogleg | success | [0.788 1.1 1.11 0.865 1.05 0.948 0.964 1.05 1.04 0.915] | 1.77e-28 | 0.000865 | 3 | Optimization terminated successfully. |
+| dogleg | success | [0.838 0.961 0.849 0.961 1.17 1.15 1.19 0.81 0.909 0.971] | 2.47e-28 | 0.000188 | 3 | Optimization terminated successfully. |
+| dogleg | success | [1.23 0.872 1.14 0.907 0.966 0.963 0.971 1.16 0.952 0.79] | 2.29e-28 | 0.000168 | 3 | Optimization terminated successfully. |
+| trust-ncg | fail | [1.07 0.995 1.14 1.01 1.14 0.914 1.19 0.987 0.919 0.913] | 5.92 | 0.0472 | 2000 | Maximum number of iterations has been exceeded. |
+| trust-ncg | fail | [1 0.918 1.04 1.09 1.14 1 1.05 0.969 1.1 0.868] | 5 | 0.047 | 2000 | Maximum number of iterations has been exceeded. |
+| trust-ncg | fail | [0.996 1.1 1.07 1.03 1.07 1.09 0.937 0.907 1.12 1.07] | 6.62 | 0.0474 | 2000 | Maximum number of iterations has been exceeded. |
 
 ## Best-known results (by metric)
 
 ### Fastest successful (time)
 - Method: dogleg
-- Time: 0.000165 s
+- Time: 0.000168 s
 - Iterations: 3
-- Objective: 2.73e-28
+- Objective: 2.29e-28
 
 ### Least Iterations (iter)
 - Method: dogleg
-- Time: 0.000191 s
+- Time: 0.000865 s
 - Iterations: 3
-- Objective: 3.25e-28
+- Objective: 1.77e-28
 
 ### Best Objective (f)
 - Method: dogleg
-- Time: 0.000167 s
+- Time: 0.000865 s
 - Iterations: 3
-- Objective: 3.21e-29
+- Objective: 1.77e-28

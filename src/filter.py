@@ -5,7 +5,6 @@ import numpy as np
 from datetime import date
 from pathlib import Path
 from solvers import solver
-import time
 
 #positive semidefinite - aka convexity x^T(H)x >= 0
 def psd_check(H):
@@ -24,10 +23,13 @@ def md_writer(filter, problem_name, convexity, degree):
         for i in p.is_eq_cons:
             if i is True:
                 counter += 1  
+    
+
         
-    if p.is_eq_cons is None:
+    #check if there are no constraint equations
+    if p.m == 0 and np.all(p.bl <= -1e19) and np.all(p.bu >= 1e19):
         bounds = "Type 1UC"
-    elif all(p.is_eq_cons):
+    elif p.m == 0:
         bounds = "Type 1"
     else:
         bounds = "Type 2"
@@ -84,7 +86,7 @@ def append_solves(method, bounds, filter):
                     f.write(f"| {method} | {successes[counter]} | {start_vals[counter]} | {objvals[counter]} | {times[counter]} | {iters[counter]} | {messages[counter]} |\n")
                     counter += 1
     
-    if bounds == "Type 1UC":
+    elif bounds == "Type 1UC":
         for i in problem_names:
             a = solver(i)
             successes, start_vals, objvals, times, iters, messages = a.unbounded(method)
@@ -94,6 +96,18 @@ def append_solves(method, bounds, filter):
                     start_vals[counter] = np.array2string(start_vals[counter], formatter={'float_kind': lambda x: f"{x:.3g}"}, max_line_width=10**9)
                     f.write(f"| {method} | {successes[counter]} | {start_vals[counter]} | {float(objvals[counter]):.3g} | {float(times[counter]):.3g} | {iters[counter]} | {messages[counter]} |\n")
                     counter += 1
+    
+    else:
+        for i in problem_names:
+            a = solver(i)
+            successes, start_vals, objvals, times, iters, messages = a.complex_bounds(method)
+            counter = 0
+            with open(f"./problems/{filter}/{bounds}/{i}.md", "a") as f:
+                while counter < len(successes):
+                    start_vals[counter] = np.array2string(start_vals[counter], formatter={'float_kind': lambda x: f"{x:.3g}"}, max_line_width=10**9)
+                    f.write(f"| {method} | {successes[counter]} | {start_vals[counter]} | {float(objvals[counter]):.3g} | {float(times[counter]):.3g} | {iters[counter]} | {messages[counter]} |\n")
+                    counter += 1
+    
 
 def append_best(bounds, filter):
     base_dir = Path("./problems")
@@ -111,7 +125,7 @@ def append_best(bounds, filter):
         best_iters = None
         best_obj = None
 
-        # ---- Read + parse ----
+        #read and parse
         with open(md_path, "r", encoding="utf-8") as f:
             for line in f:
                 line = line.strip()
@@ -162,12 +176,12 @@ def append_best(bounds, filter):
             f.write(f"- Time: {best_time['time']:.3g} s\n")
             f.write(f"- Iterations: {best_time['iters']}\n")
             f.write(f"- Objective: {best_time['obj']:.3g}\n")
-
-            f.write("\n### Least Iterations (iter)\n")
-            f.write(f"- Method: {best_iters['method']}\n")
-            f.write(f"- Time: {best_iters['time']:.3g} s\n")
-            f.write(f"- Iterations: {best_iters['iters']}\n")
-            f.write(f"- Objective: {best_iters['obj']:.3g}\n")
+            if bounds == "Type 1" or bounds == "Type 1UC":
+                f.write("\n### Least Iterations (iter)\n")
+                f.write(f"- Method: {best_iters['method']}\n")
+                f.write(f"- Time: {best_iters['time']:.3g} s\n")
+                f.write(f"- Iterations: {best_iters['iters']}\n")
+                f.write(f"- Objective: {best_iters['obj']:.3g}\n")
 
             f.write("\n### Best Objective (f)\n")
             f.write(f"- Method: {best_obj['method']}\n")
@@ -200,22 +214,25 @@ def easy_med_filter():
 
 
 def main():
-    
+    '''
     easy_med_filter()
     
     append_solves("L-BFGS-B", "Type 1", "easy")
     append_solves("TNC", "Type 1", "easy")
     append_solves("Powell", "Type 1", "easy")
     append_solves("Nelder-Mead", "Type 1", "easy")
-    
 
     append_solves("CG", "Type 1UC", "easy")
     append_solves("BFGS", "Type 1UC", "easy")
     append_solves("dogleg", "Type 1UC", "easy")
     append_solves("trust-ncg", "Type 1UC", "easy")
     
-    append_best("Type 1UC", "easy")
-    append_best("Type 1", "easy")
+    append_solves("trust-constr", "Type 2", "easy")
+    append_solves("SLSQP", "Type 2", "easy")
+    append_solves("COBYLA", "Type 2", "easy")
+    '''
+    append_best("Type 2", "easy")
+
 
     
     

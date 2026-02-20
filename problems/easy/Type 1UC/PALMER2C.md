@@ -8,7 +8,7 @@
 
 ## General Info
 - **Notes:** 
-- **Last Updated:** 2026-02-12
+- **Last Updated:** 2026-02-19
 
 ## Classification
 - **Convexity:** Convex
@@ -20,35 +20,35 @@
 ## Runs
 | method | success | start | f | time | iters | messages |
 |:------|:--------:|:------|------:|------:|------:|:------|
-| CG | fail | [1.06 0.837 0.992 0.914 1.2 0.901 1.12 0.976] | 0.172 | 0.0645 | 1600 | Maximum number of iterations has been exceeded. |
-| CG | fail | [0.948 0.936 1.02 1.02 1.03 0.887 1.03 1.08] | 0.132 | 0.0735 | 1600 | Maximum number of iterations has been exceeded. |
-| CG | fail | [0.974 0.894 1.03 1.01 1.08 1.17 1.14 0.949] | 0.138 | 0.0694 | 1600 | Maximum number of iterations has been exceeded. |
-| BFGS | success | [1.01 0.945 0.973 1.14 0.948 1.01 1.1 0.805] | 0.0144 | 0.00151 | 49 | Optimization terminated successfully. |
-| BFGS | success | [1.02 0.99 1.11 0.872 1.15 0.963 1.05 0.943] | 0.0144 | 0.00157 | 48 | Optimization terminated successfully. |
-| BFGS | success | [0.925 1.1 0.935 1.11 0.9 1.04 1.03 1.15] | 0.0144 | 0.00161 | 51 | Optimization terminated successfully. |
-| dogleg | success | [1.15 0.991 1.05 1.07 0.977 0.897 1.03 1.22] | 0.0144 | 0.000378 | 7 | Optimization terminated successfully. |
-| dogleg | success | [1.01 0.926 0.87 1.15 1.01 1.01 0.951 1.11] | 0.0144 | 0.000362 | 7 | Optimization terminated successfully. |
-| dogleg | success | [1.18 1.05 0.986 0.94 0.965 0.686 1.02 0.827] | 0.0144 | 0.00037 | 7 | Optimization terminated successfully. |
-| trust-ncg | fail | [1.04 0.99 1.14 1.29 0.98 0.979 0.998 0.996] | 1.14e+04 | 0.00097 | 34 | A bad approximation caused failure to predict improvement. |
-| trust-ncg | fail | [0.994 1.17 1.15 0.801 1.1 0.895 1.06 0.996] | 1.05e+04 | 0.000275 | 8 | A bad approximation caused failure to predict improvement. |
-| trust-ncg | fail | [0.892 1.07 1.01 0.969 1 1.16 0.946 0.848] | 1.32e+04 | 0.000139 | 3 | A bad approximation caused failure to predict improvement. |
+| CG | fail | [1.22 1.05 0.935 1.25 1.08 0.929 0.893 0.995] | 0.14 | 0.0675 | 1600 | Maximum number of iterations has been exceeded. |
+| CG | fail | [0.866 0.954 1.09 1.09 1.04 0.946 1.1 1.03] | 0.136 | 0.0727 | 1600 | Maximum number of iterations has been exceeded. |
+| CG | fail | [1.06 1.06 1.09 1.04 0.879 0.879 0.932 0.903] | 0.0178 | 0.0749 | 1600 | Maximum number of iterations has been exceeded. |
+| BFGS | success | [0.958 1.21 1.23 0.981 0.946 0.811 0.967 0.885] | 0.0144 | 0.00138 | 44 | Optimization terminated successfully. |
+| BFGS | success | [0.963 0.81 0.867 0.907 0.975 0.912 1.08 0.998] | 0.0144 | 0.00144 | 49 | Optimization terminated successfully. |
+| BFGS | success | [1.04 1.04 1.05 0.97 0.962 0.98 1.03 1.08] | 0.0144 | 0.00159 | 51 | Optimization terminated successfully. |
+| dogleg | success | [0.926 0.87 1.1 0.872 0.95 0.914 0.93 0.977] | 0.0144 | 0.000396 | 7 | Optimization terminated successfully. |
+| dogleg | success | [0.952 0.827 0.979 0.923 1.02 1.06 0.8 0.943] | 0.0144 | 0.000361 | 7 | Optimization terminated successfully. |
+| dogleg | success | [0.775 1.09 1.04 1.04 0.807 1.08 1.05 1.02] | 0.0144 | 0.00036 | 7 | Optimization terminated successfully. |
+| trust-ncg | fail | [0.935 1.04 0.923 1.06 0.954 0.969 0.953 0.973] | 9.72e+03 | 0.000933 | 35 | A bad approximation caused failure to predict improvement. |
+| trust-ncg | fail | [0.869 0.836 0.95 0.866 1.13 1.09 0.917 0.987] | 1.06e+04 | 0.000256 | 7 | A bad approximation caused failure to predict improvement. |
+| trust-ncg | fail | [0.984 1.03 1.05 1.03 0.872 1.1 0.931 1.03] | 9.92e+03 | 0.000831 | 34 | A bad approximation caused failure to predict improvement. |
 
 ## Best-known results (by metric)
 
 ### Fastest successful (time)
 - Method: trust-ncg
-- Time: 0.000139 s
-- Iterations: 3
-- Objective: 1.32e+04
+- Time: 0.000256 s
+- Iterations: 7
+- Objective: 1.06e+04
 
 ### Least Iterations (iter)
-- Method: trust-ncg
-- Time: 0.000139 s
-- Iterations: 3
-- Objective: 1.32e+04
+- Method: dogleg
+- Time: 0.000396 s
+- Iterations: 7
+- Objective: 0.0144
 
 ### Best Objective (f)
 - Method: BFGS
-- Time: 0.00151 s
-- Iterations: 49
+- Time: 0.00138 s
+- Iterations: 44
 - Objective: 0.0144

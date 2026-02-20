@@ -8,7 +8,7 @@
 
 ## General Info
 - **Notes:** 
-- **Last Updated:** 2026-02-12
+- **Last Updated:** 2026-02-19
 
 ## Classification
 - **Convexity:** Convex
@@ -20,35 +20,35 @@
 ## Runs
 | method | success | start | f | time | iters | messages |
 |:------|:--------:|:------|------:|------:|------:|:------|
-| CG | success | [4.66 7.93] | -18.2 | 0.00017 | 3 | Optimization terminated successfully. |
-| CG | success | [2.4 7.23] | -18.2 | 0.000115 | 2 | Optimization terminated successfully. |
-| CG | success | [1.69 7.66] | -18.2 | 0.000123 | 2 | Optimization terminated successfully. |
-| BFGS | success | [2.03 8.57] | -18.2 | 0.000254 | 7 | Optimization terminated successfully. |
-| BFGS | success | [3.92 7.22] | -18.2 | 0.000236 | 7 | Optimization terminated successfully. |
-| BFGS | success | [3.6 8.33] | -18.2 | 0.000232 | 7 | Optimization terminated successfully. |
-| dogleg | success | [2.41 7.83] | -18.2 | 0.000139 | 2 | Optimization terminated successfully. |
-| dogleg | success | [1.43 6.96] | -18.2 | 0.000148 | 3 | Optimization terminated successfully. |
-| dogleg | success | [1.87 8.51] | -18.2 | 0.000117 | 2 | Optimization terminated successfully. |
-| trust-ncg | fail | [4 8.33] | -17.7 | 7.13e-05 | 0 | A bad approximation caused failure to predict improvement. |
-| trust-ncg | fail | [2.45 8.78] | -17.9 | 0.000124 | 2 | A bad approximation caused failure to predict improvement. |
-| trust-ncg | fail | [2.39 8.88] | -17.8 | 0.000118 | 2 | A bad approximation caused failure to predict improvement. |
+| CG | success | [2.73 7.98] | -18.2 | 0.000183 | 3 | Optimization terminated successfully. |
+| CG | success | [2.23 6.62] | -18.2 | 0.000129 | 2 | Optimization terminated successfully. |
+| CG | success | [2.85 8.27] | -18.2 | 0.000134 | 3 | Optimization terminated successfully. |
+| BFGS | success | [2.9 6.53] | -18.2 | 0.000252 | 7 | Optimization terminated successfully. |
+| BFGS | success | [3.55 9.04] | -18.2 | 0.00017 | 4 | Optimization terminated successfully. |
+| BFGS | success | [2.86 7.58] | -18.2 | 0.000196 | 5 | Optimization terminated successfully. |
+| dogleg | success | [2.6 8.03] | -18.2 | 0.000138 | 2 | Optimization terminated successfully. |
+| dogleg | success | [3.79 8.25] | -18.2 | 7.47e-05 | 1 | Optimization terminated successfully. |
+| dogleg | success | [2.16 9.08] | -18.2 | 0.000111 | 2 | Optimization terminated successfully. |
+| trust-ncg | fail | [1.63 7.75] | -17.3 | 0.000167 | 3 | A bad approximation caused failure to predict improvement. |
+| trust-ncg | fail | [3.86 7.78] | -16.7 | 5.11e-05 | 0 | A bad approximation caused failure to predict improvement. |
+| trust-ncg | fail | [3.68 7.43] | -15.7 | 5.14e-05 | 0 | A bad approximation caused failure to predict improvement. |
 
 ## Best-known results (by metric)
 
 ### Fastest successful (time)
 - Method: trust-ncg
-- Time: 7.13e-05 s
+- Time: 5.11e-05 s
 - Iterations: 0
-- Objective: -17.7
+- Objective: -16.7
 
 ### Least Iterations (iter)
 - Method: trust-ncg
-- Time: 7.13e-05 s
+- Time: 5.11e-05 s
 - Iterations: 0
-- Objective: -17.7
+- Objective: -16.7
 
 ### Best Objective (f)
 - Method: CG
-- Time: 0.00017 s
+- Time: 0.000183 s
 - Iterations: 3
 - Objective: -18.2
