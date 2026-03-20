@@ -20,3 +20,12 @@
 ## Runs
 | method | success | start | f | time | iters | messages |
 |:------|:--------:|:------|------:|------:|------:|:------|
+| trust-constr | success | [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1] | 11.1 | 0.0676 | 74 | `xtol` termination condition is satisfied. |
+| trust-constr | success | [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1] | 11.1 | 0.0418 | 74 | `xtol` termination condition is satisfied. |
+| trust-constr | success | [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1] | 11.1 | 0.0419 | 74 | `xtol` termination condition is satisfied. |
+| SLSQP | success | [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1] | 11.1 | 0.00584 | 15 | Optimization terminated successfully |
+| SLSQP | success | [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1] | 11.1 | 0.00244 | 15 | Optimization terminated successfully |
+| SLSQP | success | [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1] | 11.1 | 0.00235 | 15 | Optimization terminated successfully |
+| COBYLA | success | [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1] | 11.1 | 1.76 | None | Return from COBYLA because the trust region radius reaches its lower bound. |
+| COBYLA | success | [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1] | 11.1 | 1.75 | None | Return from COBYLA because the trust region radius reaches its lower bound. |
+| COBYLA | success | [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1] | 11.1 | 1.75 | None | Return from COBYLA because the trust region radius reaches its lower bound. |

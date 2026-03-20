@@ -32,3 +32,15 @@
 | trust-ncg | fail | [0.96935 1.2443 0.97008 1.045 1.0907 1.0059 0.88903 0.80634] | 469 | 0.000763 | 34 | A bad approximation caused failure to predict improvement. |
 | trust-ncg | fail | [0.71777 0.97277 1.0829 0.97058 1.1046 0.89963 1.1221 1.0404] | 1.8e+03 | 0.000169 | 4 | A bad approximation caused failure to predict improvement. |
 | trust-ncg | fail | [1.1349 0.9831 1.046 0.88977 0.97035 0.94801 0.92013 0.86129] | 1.45e+03 | 0.000126 | 3 | A bad approximation caused failure to predict improvement. |
+| CG | fail | [0.95232 1.0803 1.0746 1.0176 1.0701 0.87273 0.73232 0.81879] | 0.301 | 0.0771 | 1600 | Maximum number of iterations has been exceeded. |
+| CG | fail | [0.9179 1.0701 0.92836 0.87127 0.89698 1.1345 0.87746 1.09] | 0.307 | 0.0641 | 1600 | Maximum number of iterations has been exceeded. |
+| CG | fail | [1.1478 1.1227 1.1775 1.1565 1.2832 0.99567 0.96508 1.0597] | 0.54 | 0.0647 | 1600 | Maximum number of iterations has been exceeded. |
+| BFGS | success | [1.1504 0.8587 1.0645 0.95207 0.94762 0.90755 1.0233 1.0769] | 0.16 | 0.00172 | 54 | Optimization terminated successfully. |
+| BFGS | success | [0.80605 1.0959 1.2256 0.97229 0.88981 0.83311 0.79941 0.9751] | 0.16 | 0.00153 | 51 | Optimization terminated successfully. |
+| BFGS | success | [1.0546 0.97382 1.0136 1.0292 1.0256 0.80723 0.88188 1.0014] | 0.16 | 0.00164 | 53 | Optimization terminated successfully. |
+| dogleg | success | [0.90426 0.94195 1.0354 0.94726 0.91541 1.0937 0.91644 0.86851] | 0.16 | 0.000499 | 9 | Optimization terminated successfully. |
+| dogleg | success | [0.92362 1.0167 1.0307 0.82692 0.99667 0.92185 1.3302 0.90575] | 0.16 | 0.000447 | 9 | Optimization terminated successfully. |
+| dogleg | success | [0.99393 0.89285 0.99646 1.0693 1.0155 0.92162 0.87898 0.74985] | 0.16 | 0.000443 | 9 | Optimization terminated successfully. |
+| trust-ncg | fail | [1.0328 1.2411 0.88153 1.1631 1.0746 0.97436 0.97363 1.0762] | 364 | 0.00021 | 5 | A bad approximation caused failure to predict improvement. |
+| trust-ncg | fail | [0.9674 1.0709 1.1085 0.92731 0.82208 1.1091 1.0126 1.0491] | 546 | 0.000958 | 36 | A bad approximation caused failure to predict improvement. |
+| trust-ncg | fail | [1.0124 1.0289 0.96682 1.0737 1.1468 0.97718 1.0855 0.92796] | 452 | 0.000809 | 34 | A bad approximation caused failure to predict improvement. |

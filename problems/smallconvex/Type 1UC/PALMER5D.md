@@ -32,3 +32,15 @@
 | trust-ncg | fail | [1.0751 1.1615 0.87657 1.0091] | 1.78e+04 | 0.00021 | 6 | A bad approximation caused failure to predict improvement. |
 | trust-ncg | fail | [1.1249 1.2192 1.0167 0.99237] | 1.52e+04 | 0.000328 | 11 | A bad approximation caused failure to predict improvement. |
 | trust-ncg | fail | [0.95861 0.87111 0.94187 0.92686] | 1.79e+04 | 0.000199 | 6 | A bad approximation caused failure to predict improvement. |
+| CG | success | [0.96116 0.8904 0.96976 0.97052] | 87.3 | 0.00103 | 25 | Optimization terminated successfully. |
+| CG | success | [0.84668 1.0008 1.0602 1.011] | 87.3 | 0.00157 | 26 | Optimization terminated successfully. |
+| CG | success | [1.0762 0.85231 1.123 1.0643] | 87.3 | 0.00384 | 101 | Optimization terminated successfully. |
+| BFGS | success | [0.9286 1.0437 0.92822 1.2371] | 87.3 | 0.000374 | 11 | Optimization terminated successfully. |
+| BFGS | success | [1.0603 0.9581 0.96336 0.954] | 87.3 | 0.000348 | 11 | Optimization terminated successfully. |
+| BFGS | success | [1.0423 0.98621 1.0458 1.0692] | 87.3 | 0.000345 | 11 | Optimization terminated successfully. |
+| dogleg | success | [0.88942 0.85614 0.96426 0.98974] | 87.3 | 0.000413 | 8 | Optimization terminated successfully. |
+| dogleg | success | [0.9978 1.0653 1.023 1.0747] | 87.3 | 0.00038 | 8 | Optimization terminated successfully. |
+| dogleg | success | [0.99216 1.0001 1.147 0.82348] | 87.3 | 0.000378 | 8 | Optimization terminated successfully. |
+| trust-ncg | fail | [0.87115 1.0161 1.063 1.0243] | 1.79e+04 | 0.00022 | 6 | A bad approximation caused failure to predict improvement. |
+| trust-ncg | fail | [1.0844 0.9186 1.1241 1.1321] | 1.21e+04 | 0.000339 | 12 | A bad approximation caused failure to predict improvement. |
+| trust-ncg | fail | [0.98839 1.102 0.95883 1.0348] | 1.79e+04 | 0.000195 | 6 | A bad approximation caused failure to predict improvement. |

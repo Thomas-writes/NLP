@@ -87,35 +87,52 @@ class solver:
         #make sure the initial point is within the bounds
         x0 = np.clip(x0, lb, ub)
 
-
         scale = max(1.0, np.linalg.norm(x0, ord=np.inf))
-        step = 0.1 * scale
+        step0 = 0.1 * scale
 
         starts = []
         for _ in range(k):
             x = None
-            for __ in range(50):
+            best = None
+            best_violation = np.inf
+            step = step0
+
+            for __ in range(200):
+
                 cand = x0 + step * rng.standard_normal(size=x0.size)
                 cand = np.clip(cand, lb, ub)
 
-                #tey cand make sure the candidate works for the lower and upper constraints
                 try:
                     c = p.cons(cand)
-                    if np.all(c >= p.cl) and np.all(c <= p.cu):
+
+                    #compute constraint violation
+                    low_v = np.maximum(p.cl - c, 0)
+                    high_v = np.maximum(c - p.cu, 0)
+                    violation = np.max(low_v) + np.max(high_v)
+
+                    if violation < best_violation:
+                        best_violation = violation
+                        best = cand
+
+                    if violation == 0:
                         x = cand
                         break
-                    
+
                 except Exception:
                     pass
-            #fail safe if the random starts dont work just use the initial guess
+
+                #shrink step slowly if we keep missing feasibility
+                if __ % 40 == 39:
+                    step *= 0.5
+
+            #if no feasible point found use least infeasible
             if x is None:
-                x = x0
-            
+                x = best if best is not None else x0
+
             starts.append(x)
 
         return starts
-
-    
+        
     #store the function and gradient/jacobian required for solve methods
     def fun(self, x):
         return self.p.obj(x)
@@ -463,8 +480,9 @@ class solver:
     '''
     def complex_bounds(self, method):
         
+        #temporarily set the timeout to 10 minutes 
         def timeout(xk, state=None):
-            if time.perf_counter() - start > 60*20:
+            if time.perf_counter() - start > 60*10:
                 raise TimeoutError
             
         try:

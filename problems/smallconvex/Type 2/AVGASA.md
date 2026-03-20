@@ -20,3 +20,12 @@
 ## Runs
 | method | success | start | f | time | iters | messages |
 |:------|:--------:|:------|------:|------:|------:|:------|
+| trust-constr | success | [0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5] | -4.63 | 0.0153 | 30 | `gtol` termination condition is satisfied. |
+| trust-constr | success | [0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5] | -4.63 | 0.0148 | 30 | `gtol` termination condition is satisfied. |
+| trust-constr | success | [0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5] | -4.63 | 0.0148 | 30 | `gtol` termination condition is satisfied. |
+| SLSQP | success | [0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5] | -4.63 | 0.000754 | 5 | Optimization terminated successfully |
+| SLSQP | success | [0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5] | -4.63 | 0.000754 | 5 | Optimization terminated successfully |
+| SLSQP | success | [0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5] | -4.63 | 0.000771 | 5 | Optimization terminated successfully |
+| COBYLA | success | [0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5] | -4.79 | 0.103 | None | Return from COBYLA because the trust region radius reaches its lower bound. |
+| COBYLA | success | [0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5] | -4.79 | 0.104 | None | Return from COBYLA because the trust region radius reaches its lower bound. |
+| COBYLA | success | [0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5] | -4.79 | 0.103 | None | Return from COBYLA because the trust region radius reaches its lower bound. |

@@ -32,3 +32,15 @@
 | trust-ncg | fail | [1.0675 0.97443 1.1123 0.97546 0.98034 0.99431 0.90397 1.0374 0.9498 1.0292] | 5.43 | 0.0479 | 2000 | Maximum number of iterations has been exceeded. |
 | trust-ncg | fail | [1.0632 1.1045 1.0242 1.023 1.0301 0.9006 1.1309 1.0967 0.88041 1.0682] | 6.97 | 0.0474 | 2000 | Maximum number of iterations has been exceeded. |
 | trust-ncg | fail | [0.94497 0.97987 1.0853 1.0857 1.2096 1.0924 1.031 0.93743 1.0479 1.0134] | 5.48 | 0.0473 | 2000 | Maximum number of iterations has been exceeded. |
+| CG | success | [0.93068 0.98991 1.14 0.85194 1.1657 0.87467 0.95706 0.89236 1.1432 0.87709] | 9.06e-11 | 0.00861 | 246 | Optimization terminated successfully. |
+| CG | success | [0.98976 1.188 0.9816 1.1274 0.83939 0.88923 1.006 1.0529 0.92899 0.93723] | 3.75e-11 | 0.00564 | 165 | Optimization terminated successfully. |
+| CG | success | [1.0421 0.97182 0.97226 0.87372 1.1105 0.84381 0.98236 0.96296 1.0942 1.0743] | 4.24e-20 | 0.000849 | 15 | Optimization terminated successfully. |
+| BFGS | success | [0.98609 0.93447 1.0411 1.1684 0.85872 0.90431 0.91886 1.0522 1.1793 1.0314] | 9.67e-26 | 0.000763 | 15 | Optimization terminated successfully. |
+| BFGS | success | [1.0829 0.84266 0.96241 1.0424 0.96071 1.0012 1.0426 0.96286 0.89742 0.81035] | 3.82e-16 | 0.00072 | 15 | Optimization terminated successfully. |
+| BFGS | success | [0.98983 1.0638 0.85228 0.9951 1.0128 1.002 0.92724 1.0867 1.0782 0.92658] | 5.22e-40 | 0.000726 | 15 | Optimization terminated successfully. |
+| dogleg | success | [1.1729 0.98466 0.97187 1.1601 0.92082 0.97055 0.9495 0.87291 0.92082 0.98625] | 7.62e-29 | 0.000203 | 3 | Optimization terminated successfully. |
+| dogleg | success | [1.0028 1.0179 0.99099 1.1011 0.87024 0.79849 0.9849 0.96173 1.1088 0.99998] | 1.28e-28 | 0.000163 | 3 | Optimization terminated successfully. |
+| dogleg | success | [1.1195 1.0756 0.9364 1.0953 0.99689 0.97644 0.94226 1.066 1.1241 1.0379] | 5.78e-28 | 0.000165 | 3 | Optimization terminated successfully. |
+| trust-ncg | fail | [0.86392 1.064 1.0176 1.0681 0.86744 0.90295 1.018 1.1647 1.0059 1.1019] | 6.23 | 0.0507 | 2000 | Maximum number of iterations has been exceeded. |
+| trust-ncg | fail | [0.93196 1.0316 1.0013 1.0261 0.89742 0.92489 0.99088 1.0499 1.0078 1.1275] | 5.93 | 0.0492 | 2000 | Maximum number of iterations has been exceeded. |
+| trust-ncg | fail | [0.95349 0.91802 0.95053 1.0662 0.96655 0.98037 1.0364 0.91387 0.88942 1.0386] | 4.93 | 0.0504 | 2000 | Maximum number of iterations has been exceeded. |
