@@ -8,7 +8,7 @@
 
 ## General Info
 - **Notes:** 
-- **Last Updated:** 2026-03-02
+- **Last Updated:** 2026-03-25
 
 ## Classification
 - **Convexity:** Convex
@@ -20,24 +20,15 @@
 ## Runs
 | method | success | start | f | time | iters | messages |
 |:------|:--------:|:------|------:|------:|------:|:------|
-| CG | success | [-3.1702 -3.015] | 2.47e-32 | 0.000206 | 2 | Optimization terminated successfully. |
-| CG | success | [-2.1877 -2.7929] | 1.29e-31 | 0.000141 | 2 | Optimization terminated successfully. |
-| CG | success | [-3.0919 -2.3309] | 6.52e-32 | 0.000143 | 2 | Optimization terminated successfully. |
-| BFGS | success | [-3.2395 -2.8908] | 1.38e-14 | 0.000267 | 7 | Optimization terminated successfully. |
-| BFGS | success | [-2.7998 -2.8365] | 1.35e-11 | 0.000265 | 8 | Optimization terminated successfully. |
-| BFGS | success | [-2.476 -2.801] | 3.9e-11 | 0.000319 | 10 | Optimization terminated successfully. |
-| dogleg | success | [-2.4261 -2.8015] | 0 | 0.000226 | 3 | Optimization terminated successfully. |
-| dogleg | success | [-3.5579 -3.2376] | 5.14e-32 | 0.000157 | 3 | Optimization terminated successfully. |
-| dogleg | success | [-3.168 -2.3974] | 8.22e-33 | 0.000149 | 3 | Optimization terminated successfully. |
-| CG | success | [-3.9367 -2.8862] | 2.7e-27 | 0.000213 | 2 | Optimization terminated successfully. |
-| CG | success | [-3.2364 -2.8507] | 3.6e-27 | 0.000148 | 2 | Optimization terminated successfully. |
-| CG | success | [-2.7238 -2.536] | 7.06e-30 | 0.000139 | 2 | Optimization terminated successfully. |
-| BFGS | success | [-3.2226 -2.8304] | 1.58e-14 | 0.000269 | 7 | Optimization terminated successfully. |
-| BFGS | success | [-3.1256 -2.9517] | 5.05e-13 | 0.000238 | 7 | Optimization terminated successfully. |
-| BFGS | success | [-2.3696 -2.634] | 6.65e-12 | 0.000186 | 5 | Optimization terminated successfully. |
-| dogleg | success | [-2.2549 -2.8169] | 0 | 0.000237 | 3 | Optimization terminated successfully. |
-| dogleg | success | [-3.0668 -3.1271] | 8.22e-33 | 0.000172 | 3 | Optimization terminated successfully. |
-| dogleg | success | [-3.7205 -2.9862] | 8.22e-33 | 0.000163 | 3 | Optimization terminated successfully. |
-| trust-ncg | success | [-2.6379 -2.787] | 7.2e-08 | 0.00178 | 65 | Optimization terminated successfully. |
-| trust-ncg | success | [-3.3254 -3.6874] | 6.42e-08 | 0.00126 | 48 | Optimization terminated successfully. |
-| trust-ncg | success | [-2.5709 -3.4297] | 6.97e-08 | 0.00122 | 50 | Optimization terminated successfully. |
+| CG | success | [-3.2179 -3.066] | 2.59e-28 | 0.00027 | 2 | Optimization terminated successfully. |
+| CG | success | [-3.1544 -2.6628] | 6.84e-31 | 0.000182 | 2 | Optimization terminated successfully. |
+| CG | success | [-3.2123 -2.8579] | 5.99e-27 | 0.000175 | 2 | Optimization terminated successfully. |
+| BFGS | success | [-3.0484 -3.0328] | 5.45e-12 | 0.000291 | 7 | Optimization terminated successfully. |
+| BFGS | success | [-3.318 -2.6181] | 1.02e-16 | 0.000257 | 7 | Optimization terminated successfully. |
+| BFGS | success | [-2.9284 -2.6943] | 1.24e-13 | 0.000281 | 8 | Optimization terminated successfully. |
+| dogleg | success | [-3.0702 -2.8294] | 0 | 0.000211 | 3 | Optimization terminated successfully. |
+| dogleg | success | [-3.1448 -3.4601] | 2.47e-32 | 0.000173 | 3 | Optimization terminated successfully. |
+| dogleg | success | [-2.9941 -3.3074] | 8.22e-33 | 0.000171 | 3 | Optimization terminated successfully. |
+| trust-ncg | success | [-2.9296 -3.2041] | 7.02e-12 | 0.00218 | 80 | Optimization terminated successfully. |
+| trust-ncg | success | [-3.702 -2.8851] | 4.45e-12 | 0.00271 | 95 | Optimization terminated successfully. |
+| trust-ncg | success | [-2.956 -3.475] | 7.3e-12 | 0.0026 | 101 | Optimization terminated successfully. |

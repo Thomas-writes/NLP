@@ -18,8 +18,8 @@ def psd_check(H):
 
 
 #this filter should be working
-def filter():
-    problems = pycutest.find_problems(constraints="unconstrained bound linear")
+def filter(start, end):
+    problems = pycutest.find_problems(constraints="unconstrained bound linear")[start:end]
     
     for problem in problems:
         try:
@@ -30,10 +30,11 @@ def filter():
             continue
             
         try:
-            x0 = p.x0
-            H = p.ihess(x0)
-            #symmetrize for correctness - thinking about 2nd derivatives this is logical
-            H = .5*(H + H.T)
+            if p.n <= 500:
+                x0 = p.x0
+                H = p.ihess(x0)
+                #symmetrize for correctness - thinking about 2nd derivatives this is logical
+                H = .5*(H + H.T)
         except Exception as e: 
             print(f"Skipping {problem} (Hessian failed): {e}")
             continue
@@ -41,15 +42,19 @@ def filter():
         objective_type = props["objective"] 
 
         #this is for small problems
-        if p.n <= 20:
-            #check the convexity using the hessian eigenvalues
-            if psd_check(H) == "convex":
-                md_writer("smallconvex", problem, "Convex", objective_type)
-            else:
-                md_writer("smallnonconvex", problem, "Nonconvex", objective_type)
-        #this is for relatively large problems
-        elif p.n <= 500:
-            if psd_check(H) == "convex":
-                md_writer("largeconvex", problem, "Convex", objective_type)
-            else:
-                md_writer("largenonconvex", problem, "Nonconvex", objective_type)
+        try:
+            if p.n <= 20:
+                #check the convexity using the hessian eigenvalues
+                if psd_check(H) == "convex":
+                    md_writer("smallconvex", problem, "Convex", objective_type)
+                else:
+                    md_writer("smallnonconvex", problem, "Nonconvex", objective_type)
+            #this is for relatively large problems
+            elif p.n <= 500:
+                if psd_check(H) == "convex":
+                    md_writer("largeconvex", problem, "Convex", objective_type)
+                else:
+                    md_writer("largenonconvex", problem, "Nonconvex", objective_type)
+        except Exception as e: 
+            print(f"Skipping {problem} (PSD Check Failed): {e}")
+            continue

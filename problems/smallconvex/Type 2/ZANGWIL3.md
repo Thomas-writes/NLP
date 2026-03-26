@@ -8,7 +8,7 @@
 
 ## General Info
 - **Notes:** 
-- **Last Updated:** 2026-03-02
+- **Last Updated:** 2026-03-25
 
 ## Classification
 - **Convexity:** Convex
@@ -20,12 +20,3 @@
 ## Runs
 | method | success | start | f | time | iters | messages |
 |:------|:--------:|:------|------:|------:|------:|:------|
-| trust-constr | success | [100 -1 2.5] | 0 | 0.00422 | 14 | `gtol` termination condition is satisfied. |
-| trust-constr | success | [100 -1 2.5] | 0 | 0.00396 | 14 | `gtol` termination condition is satisfied. |
-| trust-constr | success | [100 -1 2.5] | 0 | 0.00383 | 14 | `gtol` termination condition is satisfied. |
-| SLSQP | success | [100 -1 2.5] | 0 | 0.000236 | 1 | Optimization terminated successfully |
-| SLSQP | success | [100 -1 2.5] | 0 | 0.000217 | 1 | Optimization terminated successfully |
-| SLSQP | success | [100 -1 2.5] | 0 | 0.000208 | 1 | Optimization terminated successfully |
-| COBYLA | success | [100 -1 2.5] | 0 | 0.014 | None | Return from COBYLA because the trust region radius reaches its lower bound. |
-| COBYLA | success | [100 -1 2.5] | 0 | 0.0142 | None | Return from COBYLA because the trust region radius reaches its lower bound. |
-| COBYLA | success | [100 -1 2.5] | 0 | 0.0138 | None | Return from COBYLA because the trust region radius reaches its lower bound. |

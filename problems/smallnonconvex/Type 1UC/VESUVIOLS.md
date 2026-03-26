@@ -8,7 +8,7 @@
 
 ## General Info
 - **Notes:** 
-- **Last Updated:** 2026-03-02
+- **Last Updated:** 2026-03-25
 
 ## Classification
 - **Convexity:** Nonconvex
@@ -20,15 +20,15 @@
 ## Runs
 | method | success | start | f | time | iters | messages |
 |:------|:--------:|:------|------:|------:|------:|:------|
-| CG | fail | [0.14977 -0.048334 0.10121 -0.017152 0.024019 0.16195 0.080189 -0.17023] | 3.46e+03 | 0.0122 | 43 | Desired error not necessarily achieved due to precision loss. |
-| CG | fail | [-0.0010669 -0.035317 0.10287 0.099011 -0.15264 0.14529 0.13571 -0.046785] | 3.46e+03 | 0.0191 | 93 | Desired error not necessarily achieved due to precision loss. |
-| CG | fail | [0.011553 0.01455 0.021732 0.11051 -0.11952 0.17602 0.027635 -0.041799] | 3.46e+03 | 0.0104 | 41 | Desired error not necessarily achieved due to precision loss. |
-| BFGS | fail | [0.00098728 0.099869 0.0064463 -0.036921 0.095003 0.14418 -0.20065 -0.011786] | 3.46e+03 | 0.0048 | 14 | Desired error not necessarily achieved due to precision loss. |
-| BFGS | fail | [0.044331 -0.034002 -0.068859 0.0022958 -0.0095397 0.18123 -0.10837 -0.086205] | 1.46e+03 | 0.0877 | 782 | Desired error not necessarily achieved due to precision loss. |
-| BFGS | fail | [-0.051232 -0.11412 0.16308 -0.038036 0.020641 -0.10298 0.0062595 -0.002245] | 1.5e+03 | 0.154 | 1496 | Desired error not necessarily achieved due to precision loss. |
-| dogleg | fail | [0.03827 -0.068048 0.16205 0.1683 -0.0072412 -0.12532 -0.046345 0.11843] | 2.57e+04 | 0.000509 | 0 | A linalg error occurred, such as a non-psd Hessian. |
-| dogleg | fail | [0.028246 -0.0021703 -0.10356 -0.081072 0.16701 0.044887 0.011023 0.19434] | 7.79e+03 | 0.000324 | 0 | A linalg error occurred, such as a non-psd Hessian. |
-| dogleg | fail | [-0.065271 0.027952 0.036965 -0.13885 0.038129 -0.012502 0.1211 0.040167] | 2.07e+04 | 0.000321 | 0 | A linalg error occurred, such as a non-psd Hessian. |
-| trust-ncg | fail | [-0.19706 0.010836 0.029709 0.09726 0.034895 0.099098 0.11041 -0.1038] | 1.57e+04 | 0.000904 | 3 | A bad approximation caused failure to predict improvement. |
-| trust-ncg | fail | [-0.014889 -0.099714 0.041689 -0.098739 0.041595 0.062042 0.073864 0.12534] | 4.88e+03 | 0.00324 | 8 | A bad approximation caused failure to predict improvement. |
-| trust-ncg | fail | [-0.15608 0.049562 -0.014646 -0.031786 0.051763 0.27726 0.037561 -0.085009] | 1.26e+04 | 0.000278 | 0 | A bad approximation caused failure to predict improvement. |
+| CG | fail | [-0.076834 0.015794 0.006333 0.18678 -0.079742 0.092866 -0.086803 0.01262] | 3.31e+03 | 0.189 | 895 | Desired error not necessarily achieved due to precision loss. |
+| CG | fail | [0.10444 -0.024683 -0.072581 -0.05454 -0.08896 0.20749 -0.043889 0.11444] | 1.5e+03 | 0.296 | 1600 | Maximum number of iterations has been exceeded. |
+| CG | fail | [0.010711 -0.067162 -0.067685 -0.047517 0.089617 0.11186 0.11858 -0.074942] | 3.45e+03 | 0.133 | 582 | Desired error not necessarily achieved due to precision loss. |
+| BFGS | fail | [0.11945 -0.19769 -0.13793 0.11413 0.027225 6.7249e-06 0.03403 -0.14526] | 3.46e+03 | 0.00668 | 40 | Desired error not necessarily achieved due to precision loss. |
+| BFGS | fail | [-0.17035 -0.036209 0.037761 -0.03387 -0.11726 0.19264 -0.13847 -0.010303] | 1.5e+03 | 0.0309 | 231 | Desired error not necessarily achieved due to precision loss. |
+| BFGS | fail | [-0.036224 0.035541 0.019712 -0.22582 -0.064569 0.060274 -0.018284 -0.078701] | 3.45e+03 | 0.0592 | 490 | Desired error not necessarily achieved due to precision loss. |
+| dogleg | fail | [-0.023282 0.023233 0.0026164 0.0032897 -0.064148 0.23844 -0.052681 0.11392] | 6.83e+04 | 0.000506 | 0 | A linalg error occurred, such as a non-psd Hessian. |
+| dogleg | fail | [0.12944 0.055147 -0.19687 -0.052597 0.13976 -0.1511 -0.13708 0.13125] | 6.2e+04 | 0.000329 | 0 | A linalg error occurred, such as a non-psd Hessian. |
+| dogleg | fail | [0.039561 -0.058535 0.041457 0.071243 -0.24336 0.05017 -0.019854 0.017689] | 1.94e+04 | 0.000323 | 0 | A linalg error occurred, such as a non-psd Hessian. |
+| trust-ncg | fail | [-0.032803 -0.12067 0.10531 0.16997 -0.026281 0.1197 0.0042077 -0.0037433] | 4.43e+03 | 0.00459 | 15 | A bad approximation caused failure to predict improvement. |
+| trust-ncg | fail | [0.01758 -0.065802 -0.027722 0.15959 0.19712 -0.00035123 0.071576 -0.10343] | 5.49e+03 | 0.00082 | 1 | A bad approximation caused failure to predict improvement. |
+| trust-ncg | fail | [0.11115 -0.0346 0.0018049 0.068887 0.096908 -0.020138 0.093168 -0.053101] | 1.49e+04 | 0.00261 | 7 | A bad approximation caused failure to predict improvement. |

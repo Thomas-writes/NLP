@@ -8,7 +8,7 @@
 
 ## General Info
 - **Notes:** 
-- **Last Updated:** 2026-03-02
+- **Last Updated:** 2026-03-25
 
 ## Classification
 - **Convexity:** Convex
@@ -20,24 +20,15 @@
 ## Runs
 | method | success | start | f | time | iters | messages |
 |:------|:--------:|:------|------:|------:|------:|:------|
-| CG | fail | [1.3252 0.09041] | -0.0494 | 0.016 | 400 | Maximum number of iterations has been exceeded. |
-| CG | fail | [1.1857 0.08337] | -0.0298 | 0.0154 | 400 | Maximum number of iterations has been exceeded. |
-| CG | fail | [1.0862 0.25104] | -0.376 | 0.0162 | 400 | Maximum number of iterations has been exceeded. |
-| BFGS | fail | [1.1011 0.083671] | 0.328 | 0.0126 | 400 | Maximum number of iterations has been exceeded. |
-| BFGS | fail | [0.96661 0.10955] | 0.293 | 0.0116 | 400 | Maximum number of iterations has been exceeded. |
-| BFGS | fail | [1.0052 0.016503] | 0.601 | 0.0122 | 400 | Maximum number of iterations has been exceeded. |
-| dogleg | fail | [1.0895 0.18575] | 0.986 | 0.000185 | 3 | A linalg error occurred, such as a non-psd Hessian. |
-| dogleg | fail | [1.208 0.22124] | -0.462 | 0.0131 | 400 | Maximum number of iterations has been exceeded. |
-| dogleg | fail | [1.1104 0.31873] | -0.636 | 0.0132 | 400 | Maximum number of iterations has been exceeded. |
-| CG | fail | [1.2199 -0.00056393] | 0.112 | 0.0159 | 400 | Maximum number of iterations has been exceeded. |
-| CG | fail | [1.259 0.041391] | 0.0662 | 0.0162 | 400 | Maximum number of iterations has been exceeded. |
-| CG | fail | [1.0054 0.024866] | 0.0236 | 0.0162 | 400 | Maximum number of iterations has been exceeded. |
-| BFGS | fail | [0.92748 0.090278] | 0.279 | 0.0125 | 400 | Maximum number of iterations has been exceeded. |
-| BFGS | fail | [1.001 0.063045] | 0.421 | 0.0125 | 400 | Maximum number of iterations has been exceeded. |
-| BFGS | fail | [1.3815 -0.0041491] | 0.667 | 0.0126 | 400 | Maximum number of iterations has been exceeded. |
-| dogleg | fail | [0.89835 0.14585] | 2.95e+04 | 6.88e-05 | 0 | A linalg error occurred, such as a non-psd Hessian. |
-| dogleg | fail | [1.0595 0.091435] | 0.996 | 0.000165 | 3 | A linalg error occurred, such as a non-psd Hessian. |
-| dogleg | fail | [0.99135 0.047753] | 224 | 4.95e-05 | 0 | A linalg error occurred, such as a non-psd Hessian. |
-| trust-ncg | fail | [1.1224 0.084464] | 7.13e+04 | 0.000753 | 30 | A bad approximation caused failure to predict improvement. |
-| trust-ncg | fail | [0.88478 0.099337] | 4.29e+04 | 0.00764 | 400 | Maximum number of iterations has been exceeded. |
-| trust-ncg | fail | [1.2679 0.14067] | 2.72e+03 | 0.000739 | 33 | A bad approximation caused failure to predict improvement. |
+| CG | fail | [1.1008 0.16071] | -0.239 | 0.0184 | 400 | Maximum number of iterations has been exceeded. |
+| CG | fail | [1.219 0.075301] | 0.011 | 0.0174 | 400 | Maximum number of iterations has been exceeded. |
+| CG | fail | [0.99823 0.017953] | 0.139 | 0.0184 | 400 | Maximum number of iterations has been exceeded. |
+| BFGS | fail | [1.1277 0.063404] | 0.335 | 0.0131 | 400 | Maximum number of iterations has been exceeded. |
+| BFGS | fail | [1.0121 -0.038041] | 0.531 | 0.0126 | 400 | Maximum number of iterations has been exceeded. |
+| BFGS | fail | [1.1334 0.013929] | 0.385 | 0.013 | 400 | Maximum number of iterations has been exceeded. |
+| dogleg | fail | [0.95368 0.041499] | 7.88e+03 | 7.08e-05 | 0 | A linalg error occurred, such as a non-psd Hessian. |
+| dogleg | fail | [1.0819 -0.0073715] | 1 | 0.000168 | 3 | A linalg error occurred, such as a non-psd Hessian. |
+| dogleg | fail | [0.99366 0.1155] | -0.399 | 0.0143 | 400 | Maximum number of iterations has been exceeded. |
+| trust-ncg | fail | [1.0045 0.0061814] | 84.1 | 0.000796 | 34 | A bad approximation caused failure to predict improvement. |
+| trust-ncg | fail | [1.2269 0.16764] | 543 | 0.000601 | 34 | A bad approximation caused failure to predict improvement. |
+| trust-ncg | fail | [1.1752 0.17261] | 1.45e+04 | 0.000721 | 32 | A bad approximation caused failure to predict improvement. |

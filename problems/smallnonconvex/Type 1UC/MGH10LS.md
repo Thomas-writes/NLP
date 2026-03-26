@@ -8,7 +8,7 @@
 
 ## General Info
 - **Notes:** 
-- **Last Updated:** 2026-03-03
+- **Last Updated:** 2026-03-25
 
 ## Classification
 - **Convexity:** Nonconvex
@@ -20,15 +20,15 @@
 ## Runs
 | method | success | start | f | time | iters | messages |
 |:------|:--------:|:------|------:|------:|------:|:------|
-| CG | success | [-31446 4.105e+05 -30736] | 3.89e+09 | 0.00134 | 8 | Optimization terminated successfully. |
-| CG | success | [-8113 3.8779e+05 -6360.2] | 3.89e+09 | 4.64e-05 | 0 | Optimization terminated successfully. |
-| CG | fail | [2789.7 4.2228e+05 69759] | 1.27e+09 | 0.0127 | 242 | Desired error not necessarily achieved due to precision loss. |
-| BFGS | fail | [-86705 3.8028e+05 53295] | 6.47e+05 | 0.0194 | 600 | Maximum number of iterations has been exceeded. |
-| BFGS | fail | [16980 3.7924e+05 34486] | 7.27e+05 | 0.00875 | 221 | Desired error not necessarily achieved due to precision loss. |
-| BFGS | fail | [30249 3.5088e+05 42487] | 6.55e+05 | 0.0196 | 600 | Maximum number of iterations has been exceeded. |
-| dogleg | fail | [9393.1 4.6774e+05 35683] | 3.22e+20 | 6.05e-05 | 0 | A linalg error occurred, such as a non-psd Hessian. |
-| dogleg | fail | [-34001 4.053e+05 -20217] | 3.89e+09 | 5.39e-05 | 0 | A linalg error occurred, such as a non-psd Hessian. |
-| dogleg | fail | [-27602 3.7729e+05 38580] | 3.64e+18 | 5.02e-05 | 0 | A linalg error occurred, such as a non-psd Hessian. |
-| trust-ncg | fail | [42163 4.4335e+05 14071] | 1.57e+11 | 0.00359 | 142 | A bad approximation caused failure to predict improvement. |
-| trust-ncg | fail | [23017 3.9396e+05 2546.7] | nan | nan | None | array must not contain infs or NaNs |
-| trust-ncg | fail | [-39510 3.3656e+05 -22340] | 3.89e+09 | 0.000601 | 24 | A bad approximation caused failure to predict improvement. |
+| CG | fail | [6054.9 4.709e+05 25396] | 1.42e+09 | 0.042 | 561 | Desired error not necessarily achieved due to precision loss. |
+| CG | fail | [5143.4 3.7626e+05 -66836] | 1.3e+09 | 0.00274 | 42 | Desired error not necessarily achieved due to precision loss. |
+| CG | fail | [-2130.8 4.2889e+05 -47536] | 3.94e+07 | 0.0054 | 76 | Desired error not necessarily achieved due to precision loss. |
+| BFGS | success | [222.07 3.9105e+05 -5841.1] | 3.89e+09 | 6.96e-05 | 0 | Optimization terminated successfully. |
+| BFGS | fail | [-454.95 3.5492e+05 37216] | 3.22e+05 | 0.0206 | 600 | Maximum number of iterations has been exceeded. |
+| BFGS | fail | [-93366 3.4155e+05 17978] | 1.36e+24 | 0.000419 | 3 | Desired error not necessarily achieved due to precision loss. |
+| dogleg | fail | [-18689 4.2383e+05 28229] | 5.59e+22 | 7.36e-05 | 0 | A linalg error occurred, such as a non-psd Hessian. |
+| dogleg | fail | [-39126 4.1103e+05 -20330] | 3.89e+09 | 5.59e-05 | 0 | A linalg error occurred, such as a non-psd Hessian. |
+| dogleg | fail | [-34254 3.7533e+05 12502] | 1.49e+36 | 5.3e-05 | 0 | A linalg error occurred, such as a non-psd Hessian. |
+| trust-ncg | fail | [53072 3.1676e+05 49437] | 3.92e+15 | 0.0154 | 600 | Maximum number of iterations has been exceeded. |
+| trust-ncg | fail | [-8876.9 4.1442e+05 35044] | 4.87e+17 | 0.014 | 600 | Maximum number of iterations has been exceeded. |
+| trust-ncg | fail | [13510 3.9737e+05 31133] | 4.86e+18 | 0.014 | 600 | Maximum number of iterations has been exceeded. |

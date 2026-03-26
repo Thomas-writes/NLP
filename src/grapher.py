@@ -75,13 +75,20 @@ def plot_cdf_counts(times, label):
 
     
 def graph(bounds, filter):
+    base_dir = Path("./problems")
+    dir_path = base_dir / filter / bounds
+    
+    num_problems = len(list(dir_path.glob("*.md")))
+
     data = collect_times(bounds, filter)
 
     plt.figure()
 
+    
     for method, times in data.items():
         plot_cdf_counts(times, method)
 
+    plt.axhline(y=num_problems, linestyle='dotted', color='gray', alpha=0.7)
     plt.xlabel("Time (s)")
     plt.ylabel("# Problems Solved")
     plt.title("Cumulative Problems Solved vs Time")

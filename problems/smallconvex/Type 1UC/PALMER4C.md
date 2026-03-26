@@ -8,7 +8,7 @@
 
 ## General Info
 - **Notes:** 
-- **Last Updated:** 2026-03-02
+- **Last Updated:** 2026-03-25
 
 ## Classification
 - **Convexity:** Convex
@@ -20,24 +20,15 @@
 ## Runs
 | method | success | start | f | time | iters | messages |
 |:------|:--------:|:------|------:|------:|------:|:------|
-| CG | fail | [0.9604 1.1934 1.1852 1.0067 1.193 1.0668 1.1034 0.97132] | 0.178 | 0.0783 | 1600 | Maximum number of iterations has been exceeded. |
-| CG | fail | [0.96748 0.98828 0.81693 1.1027 1.1076 1.1451 0.99006 1.0104] | 0.0503 | 0.041 | 922 | Desired error not necessarily achieved due to precision loss. |
-| CG | fail | [0.88447 0.972 0.98828 0.89874 1.0023 1.1186 1.0273 1.0441] | 0.373 | 0.0568 | 1600 | Maximum number of iterations has been exceeded. |
-| BFGS | success | [1.1546 0.73104 0.99128 0.94165 0.98317 0.9147 0.95221 0.91651] | 0.0503 | 0.00144 | 49 | Optimization terminated successfully. |
-| BFGS | success | [0.88027 0.97052 0.93445 0.9144 1.0462 1.051 0.86897 0.90532] | 0.0503 | 0.00159 | 52 | Optimization terminated successfully. |
-| BFGS | success | [0.9831 0.89533 1.0892 0.81207 0.96644 0.89871 0.87181 1.0738] | 0.0503 | 0.00156 | 49 | Optimization terminated successfully. |
-| dogleg | success | [0.88494 1.1517 0.92248 1.2083 0.85417 0.951 1.0989 1.0911] | 0.0503 | 0.000455 | 8 | Optimization terminated successfully. |
-| dogleg | success | [1.0488 1.136 0.98472 0.87742 0.98341 1.0462 0.95274 1.0724] | 0.0503 | 0.000414 | 8 | Optimization terminated successfully. |
-| dogleg | success | [0.90684 1.0836 1.0286 1.1144 1.1988 1.0354 0.99653 0.9429] | 0.0503 | 0.000408 | 8 | Optimization terminated successfully. |
-| CG | fail | [0.94551 1.056 1.2606 1.0835 1.1546 0.99119 1.1335 1.0247] | 0.353 | 0.0681 | 1600 | Maximum number of iterations has been exceeded. |
-| CG | fail | [1.1591 0.8865 1.0793 1.2093 0.82392 0.97606 1.0611 0.9011] | 4.34 | 0.057 | 1600 | Maximum number of iterations has been exceeded. |
-| CG | fail | [0.92376 0.87246 1.2984 1.1622 0.96512 0.97997 0.96364 0.97759] | 0.371 | 0.0674 | 1600 | Maximum number of iterations has been exceeded. |
-| BFGS | success | [1.113 1.0617 0.99418 1.0488 0.8994 1.0757 0.95939 1.0669] | 0.0503 | 0.00156 | 50 | Optimization terminated successfully. |
-| BFGS | success | [0.82833 0.97146 1.0641 0.90042 1.0922 1.0909 1.0991 1.1444] | 0.0503 | 0.0015 | 49 | Optimization terminated successfully. |
-| BFGS | success | [1.1319 0.84855 0.72713 0.8971 0.99424 1.0622 0.91431 0.93901] | 0.0503 | 0.00157 | 49 | Optimization terminated successfully. |
-| dogleg | success | [1.0636 0.99697 0.9992 0.96736 1.0063 1.0717 1.1525 1.0577] | 0.0503 | 0.000448 | 8 | Optimization terminated successfully. |
-| dogleg | success | [0.90683 1.1922 1.01 1.1386 0.96479 0.96928 1.0241 1.0227] | 0.0503 | 0.000414 | 8 | Optimization terminated successfully. |
-| dogleg | success | [0.91851 0.94867 1.0406 1.0312 1.0093 0.90932 1.0419 0.98226] | 0.0503 | 0.000413 | 8 | Optimization terminated successfully. |
-| trust-ncg | fail | [1.0651 1.0724 0.9734 1.0343 0.86682 1.1699 0.98665 0.80798] | 2.1e+03 | 0.000812 | 32 | A bad approximation caused failure to predict improvement. |
-| trust-ncg | fail | [1.1527 1.2202 1.071 1.1324 0.85833 0.77488 1.0963 0.98236] | 1.66e+03 | 0.00103 | 36 | A bad approximation caused failure to predict improvement. |
-| trust-ncg | fail | [1.0185 0.87952 0.92375 1.0593 0.97685 1.0334 0.96359 1.0785] | 2.65e+03 | 0.000168 | 4 | A bad approximation caused failure to predict improvement. |
+| CG | fail | [1.1217 1.0561 1.0973 1.1109 1.0474 1.0227 1.0014 0.97139] | 0.604 | 0.0902 | 1600 | Maximum number of iterations has been exceeded. |
+| CG | fail | [1.0111 0.99453 0.9794 1.0905 1.0483 1.0266 0.92023 1.1195] | 0.133 | 0.087 | 1600 | Maximum number of iterations has been exceeded. |
+| CG | fail | [1.0617 1.1847 1.0449 0.89271 1.0531 0.93298 0.87732 1.1965] | 0.36 | 0.09 | 1600 | Maximum number of iterations has been exceeded. |
+| BFGS | success | [0.85645 1.0554 1.0364 0.89932 1.0549 0.84221 1.054 1.042] | 0.0503 | 0.00155 | 49 | Optimization terminated successfully. |
+| BFGS | success | [1.1631 0.9727 1.0891 0.9789 1.0238 1.1895 1.2158 0.99916] | 0.0503 | 0.00148 | 48 | Optimization terminated successfully. |
+| BFGS | success | [0.98225 1.0152 0.99105 1.0152 0.97116 0.68422 0.92914 0.90315] | 0.0503 | 0.00154 | 49 | Optimization terminated successfully. |
+| dogleg | success | [0.96626 0.9697 0.97038 1.0472 1.0362 0.97542 0.98212 1.0407] | 0.0503 | 0.000977 | 19 | Optimization terminated successfully. |
+| dogleg | success | [0.84276 1.1719 1.0041 0.98946 0.96736 0.91197 1.0915 0.9385] | 0.0503 | 0.000909 | 19 | Optimization terminated successfully. |
+| dogleg | success | [0.84864 0.99116 1.0439 0.84623 1.1318 0.82398 0.94554 0.96347] | 0.0503 | 0.000919 | 19 | Optimization terminated successfully. |
+| trust-ncg | fail | [0.96323 0.99648 0.96909 1.2072 1.0899 0.8877 0.88657 0.98507] | 2.39e+03 | 0.00028 | 6 | A bad approximation caused failure to predict improvement. |
+| trust-ncg | fail | [1.0874 1.1413 0.93942 1.01 1.0385 1.0655 0.7726 0.94726] | 1.81e+03 | 0.000237 | 5 | A bad approximation caused failure to predict improvement. |
+| trust-ncg | fail | [1.0145 1.0139 0.99553 1.0229 0.87451 1.0347 1.1496 1.0624] | 2e+03 | 0.00103 | 35 | A bad approximation caused failure to predict improvement. |

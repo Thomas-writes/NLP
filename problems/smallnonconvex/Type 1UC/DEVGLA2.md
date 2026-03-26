@@ -8,7 +8,7 @@
 
 ## General Info
 - **Notes:** 
-- **Last Updated:** 2026-03-02
+- **Last Updated:** 2026-03-25
 
 ## Classification
 - **Convexity:** Nonconvex
@@ -20,15 +20,15 @@
 ## Runs
 | method | success | start | f | time | iters | messages |
 |:------|:--------:|:------|------:|------:|------:|:------|
-| CG | fail | [18.505 4.1414 0.21376 1.3995 -2.8373] | nan | 0.00164 | 2 | NaN result encountered. |
-| CG | fail | [18.17 -1.2287 0.49856 3.4551 0.8895] | nan | 4.57e-05 | 0 | NaN result encountered. |
-| CG | fail | [21.48 -2.4821 -0.2213 4.7482 -1.6593] | nan | 3.71e-05 | 0 | NaN result encountered. |
-| BFGS | fail | [21.207 3.0436 4.2031 0.36656 -1.0876] | nan | 0.00709 | 5 | Desired error not necessarily achieved due to precision loss. |
-| BFGS | fail | [17.14 2.0513 2.093 -0.57029 -2.1025] | nan | 0.0016 | 2 | Desired error not necessarily achieved due to precision loss. |
-| BFGS | success | [17.592 1.1301 2.4042 1.827 -0.74886] | 0.0267 | 0.00197 | 51 | Optimization terminated successfully. |
-| dogleg | fail | [19.75 1.9603 3.9729 3.4924 0.14501] | 1.21e+04 | 8.23e-05 | 0 | A linalg error occurred, such as a non-psd Hessian. |
-| dogleg | fail | [21.828 0.67804 0.23516 2.5707 -1.2023] | 1.43e+04 | 5.95e-05 | 0 | A linalg error occurred, such as a non-psd Hessian. |
-| dogleg | fail | [20.497 -2.1731 2.2833 2.852 3.8606] | nan | nan | None | array must not contain infs or NaNs |
-| trust-ncg | fail | [19.446 2.0771 2.9349 0.43414 1.201] | nan | nan | None | array must not contain infs or NaNs |
-| trust-ncg | fail | [19.411 3.2691 1.9575 3.7056 0.88108] | nan | nan | None | array must not contain infs or NaNs |
-| trust-ncg | fail | [20.425 3.9632 3.6034 4.1875 -0.35521] | nan | nan | None | array must not contain infs or NaNs |
+| CG | fail | [23.877 -2.0516 -1.8784 3.4151 0.64221] | nan | 6.59e-05 | 0 | NaN result encountered. |
+| CG | fail | [19.986 1.9427 0.80137 -0.4824 -0.38569] | nan | 0.00269 | 17 | NaN result encountered. |
+| CG | success | [18.106 4.1147 -0.339 -0.74895 -0.26131] | 0.025 | 0.0192 | 395 | Optimization terminated successfully. |
+| BFGS | success | [18.63 0.1165 0.9613 4.635 -0.7364] | 1.63e-16 | 0.00254 | 60 | Optimization terminated successfully. |
+| BFGS | fail | [20.332 3.7927 3.2332 1.5134 -4.7924] | nan | 0.0018 | 2 | Desired error not necessarily achieved due to precision loss. |
+| BFGS | fail | [22.336 1.0067 3.3071 1.9632 -1.3792] | nan | 0.0018 | 2 | Desired error not necessarily achieved due to precision loss. |
+| dogleg | fail | [23.019 3.0734 1.8583 2.0813 -0.89916] | 9.32e+04 | 7.35e-05 | 0 | A linalg error occurred, such as a non-psd Hessian. |
+| dogleg | fail | [21.097 1.3372 0.71932 3.8285 3.4161] | 2.13e+04 | 6.21e-05 | 0 | A linalg error occurred, such as a non-psd Hessian. |
+| dogleg | fail | [23.737 1.8736 3.1403 4.5561 -3.0377] | 5.13e+04 | 5.85e-05 | 0 | A linalg error occurred, such as a non-psd Hessian. |
+| trust-ncg | fail | [19.898 4.0275 3.9378 1.7269 0.86411] | nan | nan | None | array must not contain infs or NaNs |
+| trust-ncg | fail | [21.12 1.877 2.7959 1.0444 1.3629] | nan | nan | None | array must not contain infs or NaNs |
+| trust-ncg | fail | [18.87 -0.062091 2.7281 0.4108 0.97697] | nan | nan | None | array must not contain infs or NaNs |

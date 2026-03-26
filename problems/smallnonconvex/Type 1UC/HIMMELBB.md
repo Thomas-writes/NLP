@@ -8,7 +8,7 @@
 
 ## General Info
 - **Notes:** 
-- **Last Updated:** 2026-03-02
+- **Last Updated:** 2026-03-25
 
 ## Classification
 - **Convexity:** Nonconvex
@@ -20,15 +20,15 @@
 ## Runs
 | method | success | start | f | time | iters | messages |
 |:------|:--------:|:------|------:|------:|------:|:------|
-| CG | success | [-1.1563 1.0456] | 7.96e-09 | 0.000501 | 5 | Optimization terminated successfully. |
-| CG | fail | [-1.4473 1.0398] | 3.4 | 0.000327 | 1 | Desired error not necessarily achieved due to precision loss. |
-| CG | success | [-1.4197 0.72264] | 5.72e-11 | 0.000256 | 3 | Optimization terminated successfully. |
-| BFGS | success | [-0.86578 0.96823] | 1.24e-10 | 0.000233 | 4 | Optimization terminated successfully. |
-| BFGS | success | [-1.1701 1.0595] | 9.34e-15 | 0.000245 | 8 | Optimization terminated successfully. |
-| BFGS | success | [-1.347 1.0513] | 2.18e-14 | 0.00022 | 7 | Optimization terminated successfully. |
-| dogleg | fail | [-1.2275 0.92163] | 2.88e+04 | 7.05e-05 | 0 | A linalg error occurred, such as a non-psd Hessian. |
-| dogleg | fail | [-1.116 0.96423] | 1.16e+04 | 5.24e-05 | 0 | A linalg error occurred, such as a non-psd Hessian. |
-| dogleg | fail | [-1.2735 1.081] | 5.85e+04 | 5.11e-05 | 0 | A linalg error occurred, such as a non-psd Hessian. |
-| trust-ncg | fail | [-1.1958 1.0772] | 3.04e-06 | 0.000262 | 8 | A bad approximation caused failure to predict improvement. |
-| trust-ncg | success | [-1.2877 0.95148] | 1.99e-08 | 0.000269 | 10 | Optimization terminated successfully. |
-| trust-ncg | fail | [-1.205 1.0384] | 3.82e-06 | 0.000265 | 9 | A bad approximation caused failure to predict improvement. |
+| CG | success | [-1.0261 1.1669] | 4.05e-09 | 0.000291 | 3 | Optimization terminated successfully. |
+| CG | success | [-1.3073 1.116] | 1.73e-18 | 0.000264 | 4 | Optimization terminated successfully. |
+| CG | success | [-1.3149 0.95988] | 3.58e-13 | 0.000486 | 2 | Optimization terminated successfully. |
+| BFGS | success | [-1.163 0.85311] | 3.29e-10 | 0.000314 | 8 | Optimization terminated successfully. |
+| BFGS | success | [-1.2414 0.78341] | 1.18e-12 | 0.000272 | 4 | Optimization terminated successfully. |
+| BFGS | success | [-1.2516 0.8704] | 6.55e-13 | 0.000185 | 5 | Optimization terminated successfully. |
+| dogleg | fail | [-1.1025 1.056] | 1.23e+04 | 5.89e-05 | 0 | A linalg error occurred, such as a non-psd Hessian. |
+| dogleg | fail | [-1.1419 0.93678] | 1.39e+04 | 5.6e-05 | 0 | A linalg error occurred, such as a non-psd Hessian. |
+| dogleg | fail | [-1.0035 1.1822] | 5.86e+03 | 5.11e-05 | 0 | A linalg error occurred, such as a non-psd Hessian. |
+| trust-ncg | success | [-1.1305 1.1947] | 1.58e-10 | 0.000338 | 9 | Optimization terminated successfully. |
+| trust-ncg | fail | [-1.0217 0.98034] | 2.48e-06 | 0.000236 | 7 | A bad approximation caused failure to predict improvement. |
+| trust-ncg | success | [-1.1797 0.69893] | 6.78e-13 | 0.000461 | 17 | Optimization terminated successfully. |
