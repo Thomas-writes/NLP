@@ -20,3 +20,6 @@
 ## Runs
 | method | success | start | f | time | iters | messages |
 |:------|:--------:|:------|------:|------:|------:|:------|
+| trust-constr | success | [0.15952 0.050598] | -4.12 | 0.00521 | 13 | `gtol` termination condition is satisfied. |
+| trust-constr | success | [0.040352 0.07003] | -4.12 | 0.0075 | 19 | `gtol` termination condition is satisfied. |
+| trust-constr | success | [0.21862 0.045308] | -4.12 | 0.00506 | 11 | `gtol` termination condition is satisfied. |

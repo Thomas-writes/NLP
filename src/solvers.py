@@ -272,14 +272,7 @@ class solver:
                         constraints=cons,
                         callback=timeout,
                         options={
-                            "gtol": 1e-6,
-                            "xtol": 1e-6,
-                            "barrier_tol": 1e-6,
                             "initial_tr_radius": r0,
-                            "initial_constr_penalty": 1.0,
-                            "initial_barrier_parameter": 0.1,
-                            "initial_barrier_tolerance": 0.1,
-                            "verbose": 0,
                         }
                     )
                 elif method == "COBYLA":
@@ -292,9 +285,7 @@ class solver:
                         constraints=cons,
                         callback=timeout,
                         options={
-                            "rhobeg": 0.5,
-                            "tol": 1e-6,
-                            "catol": 1e-6,
+                            "rhobeg": 0.5 * np.mean(scale),
                         }
                     )
                 else:
@@ -396,9 +387,6 @@ class solver:
                         callback=timeout,
                         options={
                             "initial_trust_radius": r0,
-                            "max_trust_radius": max(10.0, 10.0 * r0),
-                            "eta": 0.1,
-                            "gtol": 1e-6,
                         }
                     )
                 elif method == "dogleg":
@@ -412,8 +400,6 @@ class solver:
                         options={
                             "initial_trust_radius": r0,
                             "max_trust_radius": max(10.0, 10.0 * r0),
-                            "eta": 0.1,
-                            "gtol": 1e-6,
                         }
                     )
                 else:

@@ -1,2 +1,1 @@
 Problems useful for debugging:
-- easy/type2/KSIP.md

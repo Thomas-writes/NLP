@@ -20,3 +20,6 @@
 ## Runs
 | method | success | start | f | time | iters | messages |
 |:------|:--------:|:------|------:|------:|------:|:------|
+| trust-constr | success | [0 0.098193] | 0.759 | 0.0129 | 63 | `xtol` termination condition is satisfied. |
+| trust-constr | success | [0.059373 -0.19944] | 0.0338 | 0.0161 | 40 | `gtol` termination condition is satisfied. |
+| trust-constr | fail | [0 -0.1061] | 0.19 | 0.398 | 1000 | The maximum number of function evaluations is exceeded. |
